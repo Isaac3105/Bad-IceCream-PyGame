@@ -1,6 +1,6 @@
 # Bad Ice Cream PyGame
 
-A fun game where you play as Ice Cream🍦 and try to eat all all fruits before
+A friv-inspired fun game where you play as Ice Cream🍦 and try to eat all all fruits before
 you're killed by monsters! 
 
 ## Installation
