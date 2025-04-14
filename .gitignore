@@ -1,0 +1,13 @@
+# Python specific
+__pycache__/
+*.py[cod]
+.env
+.venv/
+
+# IDEs and editors
+.vscode/
+.idea/
+
+# System files
+.DS_Store
+Thumbs.db
