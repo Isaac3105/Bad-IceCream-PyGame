@@ -13,4 +13,6 @@ Open main.py on vscode and press run, but be careful, it is addictive!😊
 
 Have fun!!!
 
+###(NOT FINISHED)
+
 
