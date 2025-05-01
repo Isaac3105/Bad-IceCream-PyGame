@@ -13,9 +13,9 @@ pygame.display.set_caption("Bad Ice Cream by Isaac Santos")
 clock = pygame.time.Clock()
 
 # Game States
-screens = ["menu", "paused", "gaming"]
+screens = ["start","levels", "paused", "gaming"]
 
-active_screen = "gaming"
+active_screen = "start"
 
 # Load background
 background_surface = pygame.image.load("Resources/background.png").convert_alpha()
@@ -693,6 +693,8 @@ if True:
     back_menu_button_rect = pygame.Rect(296,365,228,54)
     buttons = {continue_button_surf : continue_button_rect, back_menu_button_surf :back_menu_button_rect }
 
+#Instancias do Start e derivados
+
 # Montando layout do nível atual
 for k, i in enumerate(lv1_rounds.get(round_atual, [])):
     if k == 0:
@@ -913,6 +915,11 @@ while True:
         screen.blit(paused_interface,paused_rect)
         screen.blit(continue_button_surf,continue_button_rect)
         screen.blit(back_menu_button_surf,back_menu_button_rect)
+
+    elif active_screen == "start":
+        start_interface = pygame.image.load("Resources/menu/start.png")
+        start_rect = start_interface.get_rect(center = (SCREEN_WIDTH//2,SCREEN_HEIGHT//2))
+        screen.blit(start_interface,start_rect)
 
     # Update the screen
     pygame.display.update()
