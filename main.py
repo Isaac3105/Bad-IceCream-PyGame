@@ -714,12 +714,12 @@ if True:
         credits_button_surf: credits_button_rect
     })
 
-#Instancias dos Níveis
+#Instancias da Interface dos Níveis e derivados
 if True:
     lv1_button_surf = pygame.image.load("Resources/levels_interface/pressed_lvl1_button.png")
-    lv1_button_rect = pygame.Rect(268, 101, 93, 89)
+    lv1_button_rect = pygame.Rect(269, 101, 91, 89)
     lv2_button_surf = pygame.image.load("Resources/levels_interface/pressed_lvl2_button.png")
-    lv2_button_rect = pygame.Rect(268 + 92, 101, 93, 89)
+    lv2_button_rect = pygame.Rect(268 + 92, 101, 92, 89)
     lv3_button_surf = pygame.image.load("Resources/levels_interface/pressed_lvl3_button.png")
     lv3_button_rect = pygame.Rect(268 + 93*2 -1, 101, 93, 89)
     back_button_surf = pygame.image.load("Resources/levels_interface/pressed_back_button.png")
@@ -767,12 +767,10 @@ while True:
         if event.type == pygame.MOUSEBUTTONDOWN:
             for j, rect in enumerate(rects):
                 if rect.collidepoint(event.pos):
-                    if j == 0:
+                    if j == 0 and active_screen == "gaming":
                         restart()
                     elif j == 1 and active_screen == "gaming":
                         active_screen = "paused"
-                    elif j == 1 and active_screen == "paused":
-                        active_screen = "gaming"
                     elif j == 2:
                         # music = False
                         pass
