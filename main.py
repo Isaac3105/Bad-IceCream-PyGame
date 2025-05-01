@@ -681,19 +681,56 @@ def restart():
     return 0
 
 
-#Instancias do minimenu e derivados
+#Instancias do Minimenu e derivados
 if True:
     icons = [pygame.transform.scale_by(pygame.image.load(f"Resources/minimenu/{i}.png"),3) for i in ["restart","pause","music"]]
     for icon in icons:
         icon.set_colorkey((131, 206, 82, 255))
     rects = []
     continue_button_surf = pygame.image.load("Resources/minimenu/pressed_pause_button.png")
-    continue_button_rect = pygame.Rect(SCREEN_WIDTH//2 - 209//2, SCREEN_HEIGHT//2, 209, 58)
+    continue_button_rect = pygame.Rect(SCREEN_WIDTH//2 - 209//2, SCREEN_HEIGHT//2 - 7, 209, 54)
     back_menu_button_surf = pygame.image.load("Resources/minimenu/pressed_back_menu_button.png")
     back_menu_button_rect = pygame.Rect(296,365,228,54)
     buttons = {continue_button_surf : continue_button_rect, back_menu_button_surf :back_menu_button_rect }
 
 #Instancias do Start e derivados
+if True:
+    play_button_surf = pygame.image.load("Resources/menu/pressed_play_button.png")
+    play_button_rect = pygame.Rect(495, 78, 281, 105)
+
+    scores_button_surf = pygame.image.load("Resources/menu/pressed_scores_button.png")
+    scores_button_rect = pygame.Rect(495, 194, 281, 105)
+
+    help_button_surf = pygame.image.load("Resources/menu/pressed_help_button.png")
+    help_button_rect = pygame.Rect(495, 311, 281, 105)
+
+    credits_button_surf = pygame.image.load("Resources/menu/pressed_credits_button.png")
+    credits_button_rect = pygame.Rect(495, 311 + 117, 281, 105)
+
+    buttons.update({
+        play_button_surf: play_button_rect,
+        scores_button_surf: scores_button_rect,
+        help_button_surf: help_button_rect,
+        credits_button_surf: credits_button_rect
+    })
+
+#Instancias dos Níveis
+if True:
+    lv1_button_surf = pygame.image.load("Resources/levels_interface/pressed_lvl1_button.png")
+    lv1_button_rect = pygame.Rect(268, 101, 93, 89)
+    lv2_button_surf = pygame.image.load("Resources/levels_interface/pressed_lvl2_button.png")
+    lv2_button_rect = pygame.Rect(268 + 92, 101, 93, 89)
+    lv3_button_surf = pygame.image.load("Resources/levels_interface/pressed_lvl3_button.png")
+    lv3_button_rect = pygame.Rect(268 + 93*2 -1, 101, 93, 89)
+    back_button_surf = pygame.image.load("Resources/levels_interface/pressed_back_button.png")
+    back_button_rect = pygame.Rect(301,509,211,101)
+
+    buttons.update({
+        lv1_button_surf: lv1_button_rect,
+        lv2_button_surf: lv2_button_rect,
+        lv3_button_surf: lv3_button_rect,
+        back_button_surf:back_button_rect
+    })
 
 # Montando layout do nível atual
 for k, i in enumerate(lv1_rounds.get(round_atual, [])):
@@ -725,6 +762,8 @@ while True:
                 button.set_alpha(180)
             else:
                 button.set_alpha(0)
+
+        #All buttons system
         if event.type == pygame.MOUSEBUTTONDOWN:
             for j, rect in enumerate(rects):
                 if rect.collidepoint(event.pos):
@@ -732,11 +771,35 @@ while True:
                         restart()
                     elif j == 1 and active_screen == "gaming":
                         active_screen = "paused"
+                    elif j == 1 and active_screen == "paused":
+                        active_screen = "gaming"
                     elif j == 2:
                         # music = False
                         pass
-            if continue_button_rect.collidepoint(event.pos) and active_screen == "paused":
-                active_screen = "gaming"
+            if active_screen == "paused":
+                if continue_button_rect.collidepoint(event.pos) :
+                    active_screen = "gaming"
+                elif back_menu_button_rect.collidepoint(event.pos) :
+                    active_screen = "start"
+            elif active_screen == "start":
+                if play_button_rect.collidepoint(event.pos):
+                    active_screen = "levels"
+                elif scores_button_rect.collidepoint(event.pos):
+                    pass
+                elif help_button_rect.collidepoint(event.pos):
+                    pass
+                elif credits_button_rect.collidepoint(event.pos):
+                    pass
+            elif active_screen == "levels":
+                if lv1_button_rect.collidepoint(event.pos):
+                    active_screen = "gaming"
+                    #current_lvl = 1
+                elif lv2_button_rect.collidepoint(event.pos):
+                    pass
+                elif lv3_button_rect.collidepoint(event.pos):
+                    pass
+                elif back_button_rect.collidepoint(event.pos):
+                    active_screen = "start"
 
     # Gaming State
     if active_screen == "gaming":
@@ -916,10 +979,25 @@ while True:
         screen.blit(continue_button_surf,continue_button_rect)
         screen.blit(back_menu_button_surf,back_menu_button_rect)
 
+    # Start State
     elif active_screen == "start":
         start_interface = pygame.image.load("Resources/menu/start.png")
         start_rect = start_interface.get_rect(center = (SCREEN_WIDTH//2,SCREEN_HEIGHT//2))
         screen.blit(start_interface,start_rect)
+        screen.blit(play_button_surf,play_button_rect)
+        screen.blit(scores_button_surf,scores_button_rect)
+        screen.blit(help_button_surf,help_button_rect)
+        screen.blit(credits_button_surf,credits_button_rect)
+
+    # Levels State
+    elif active_screen == "levels":
+        start_interface = pygame.image.load("Resources/levels_interface/levels.png")
+        start_rect = start_interface.get_rect(center = (SCREEN_WIDTH//2,SCREEN_HEIGHT//2))
+        screen.blit(start_interface,start_rect)
+        screen.blit(lv1_button_surf,lv1_button_rect)
+        screen.blit(lv2_button_surf,lv2_button_rect)
+        screen.blit(lv3_button_surf,lv3_button_rect)
+        screen.blit(back_button_surf,back_button_rect)
 
     # Update the screen
     pygame.display.update()
