@@ -624,6 +624,7 @@ lv1_round3 = [
         [player for player in players],
         ]
 
+
 # Dicionário para níveis
 lv1_rounds = {1:lv1_round1, 2:lv1_round2, 3:lv1_round3}
 
@@ -633,6 +634,7 @@ round_final = 3
 lv_final = 3
 round_atual = 1
 lv_atual = 1
+already_played = [1]
 
 counter = 0
 
@@ -691,7 +693,7 @@ if True:
     continue_button_rect = pygame.Rect(SCREEN_WIDTH//2 - 209//2, SCREEN_HEIGHT//2 - 7, 209, 54)
     back_menu_button_surf = pygame.image.load("Resources/minimenu/pressed_back_menu_button.png")
     back_menu_button_rect = pygame.Rect(296,365,228,54)
-    buttons = {continue_button_surf : continue_button_rect, back_menu_button_surf :back_menu_button_rect }
+    buttons = {continue_button_surf : (continue_button_rect,True), back_menu_button_surf :(back_menu_button_rect,True)}
 
 #Instancias do Start e derivados
 if True:
@@ -708,10 +710,10 @@ if True:
     credits_button_rect = pygame.Rect(495, 311 + 117, 281, 105)
 
     buttons.update({
-        play_button_surf: play_button_rect,
-        scores_button_surf: scores_button_rect,
-        help_button_surf: help_button_rect,
-        credits_button_surf: credits_button_rect
+        play_button_surf: (play_button_rect,True),
+        scores_button_surf: (scores_button_rect,True),
+        help_button_surf: (help_button_rect,True),
+        credits_button_surf: (credits_button_rect,True)
     })
 
 #Instancias da Interface dos Níveis e derivados
@@ -726,10 +728,10 @@ if True:
     back_button_rect = pygame.Rect(301,509,211,101)
 
     buttons.update({
-        lv1_button_surf: lv1_button_rect,
-        lv2_button_surf: lv2_button_rect,
-        lv3_button_surf: lv3_button_rect,
-        back_button_surf:back_button_rect
+        lv1_button_surf: (lv1_button_rect,True),
+        lv2_button_surf: (lv2_button_rect,False),
+        lv3_button_surf: (lv3_button_rect,False),
+        back_button_surf:(back_button_rect,True)
     })
 
 # Montando layout do nível atual
@@ -758,7 +760,7 @@ while True:
 
         # MiniMenu system
         for button in buttons:
-            if buttons[button].collidepoint(pygame.mouse.get_pos()):
+            if buttons[button][0].collidepoint(pygame.mouse.get_pos()) and buttons[button][1]:
                 button.set_alpha(180)
             else:
                 button.set_alpha(0)
@@ -929,11 +931,28 @@ while True:
             if len(fruits) == 0:
                 if round_atual == round_final:
                     player.winning = True
+                    print(now - player.winning_timer)
+                    # Update level access
+                    if 3017 >= now - player.winning_timer >= 3000:
+                        already_played.append(lv_atual)
+                        lv_atual += 1
+                        if lv_atual in already_played:
+                            lv_atual -= 1
+                        else:
+                            for button in buttons:
+                                if not buttons[button][1]:
+                                    print(buttons[button][1])
+                                    buttons[button] = (buttons[button][0],True)
+                                    break
                     if counter == 0:
                         player.winning_timer = pygame.time.get_ticks()
                         counter = 1
-                    if now - player.winning_timer >= 4000:
-                        print("menu()")
+                    if now - player.winning_timer >= 5000:
+                        player.winning = False
+                        lv_atual -= 1
+                        restart()
+                        lv_atual += 1
+                        active_screen = "levels"
                 else:
                     player.done = True
 
@@ -1000,34 +1019,3 @@ while True:
     # Update the screen
     pygame.display.update()
     clock.tick(60)
-
-
-#Sistema para passar de NÍVEL (não round)
-"""
-for player in players:
-        if player.winning and now-player.winning_timer >= 5000:
-            print("⏭️ Transitioning to next level...")
-            counter = 0
-            nivel_atual += 1
-            trolls.empty()
-            iceblocks.empty()
-            players.empty()
-            fruits.empty()
-            all_sprites.empty()
-
-            for k, i in enumerate(lv1_rounds.get(nivel_atual, [])):
-                if k == 0:
-                    for j in i:
-                        trolls.add(j)
-                        all_sprites.add(j)
-                if k == 1:
-                    for j in i:
-                        fruits.add(j)
-                if k == 2:
-                    for j in i:
-                        iceblocks.add(j)
-                if k == 3:
-                    for j in i:
-                        players.add(j)
-                        all_sprites.add(j)
-"""
