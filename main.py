@@ -628,7 +628,7 @@ lv2_round1 = [
         [Troll(130,224,iceblocks,trolls),
         Troll(730,224,iceblocks,trolls)],
 
-        [Fruits(110,y,"grapes",fruits,iceblocks) for y in range(144,550,58)] + 
+        [Fruits(110,y,"kiwi",fruits,iceblocks) for y in range(144,550,58)] + 
         [Fruits(5*40 + 20 + 50,3*58 + 29 + 50,"grapes",fruits,iceblocks),Fruits(5*40 + 20 + 50,5*58 + 29 + 50,"grapes",fruits,iceblocks), Fruits(12*40 + 20 + 50,3*58 + 29 + 50,"grapes",fruits,iceblocks),Fruits(12*40 + 20 + 50,5*58 + 29 + 50,"grapes",fruits,iceblocks)] +
         [Fruits(110+15*40,y,"grapes",fruits,iceblocks) for y in range(144,550,58)] + [Fruits(399,100,"coffee",fruits,iceblocks)],
         [IceBlocks(50,y) for y in range(50,622-58,58)] + [IceBlocks(730,y) for y in range(50,622-58,58)] + 
@@ -680,7 +680,6 @@ round_final = 3
 lv_final = 3
 round_atual = 1
 lv_atual = 1
-already_played = [1]
 
 counter = 0
 
@@ -689,7 +688,7 @@ def restart():
     global round_atual, players, trolls, iceblocks, all_sprites, fruits
 
     if lv_atual == 1:
-            round1 = [
+            round = [
                 [Troll(130,224,iceblocks,trolls),
                 Troll(730,224,iceblocks,trolls)],
 
@@ -709,23 +708,44 @@ def restart():
             players.empty()
             iceblocks.empty()
             trolls.empty()
-            
+    
+    if lv_atual == 2:
+            round = [
+        [Troll(130,224,iceblocks,trolls),
+        Troll(730,224,iceblocks,trolls)],
 
-            for k, i in enumerate(round1):
-                if k == 0:
-                    for j in i:
-                        trolls.add(j)
-                        all_sprites.add(j)
-                if k == 1:
-                    for j in i:
-                        fruits.add(j)
-                if k == 2:
-                    for j in i:
-                        iceblocks.add(j)
-                if k == 3:
-                    for j in i:
-                        players.add(j)
-                        all_sprites.add(j)
+        [Fruits(110,y,"kiwi",fruits,iceblocks) for y in range(144,550,58)] + 
+        [Fruits(5*40 + 20 + 50,3*58 + 29 + 50,"grapes",fruits,iceblocks),Fruits(5*40 + 20 + 50,5*58 + 29 + 50,"grapes",fruits,iceblocks), Fruits(12*40 + 20 + 50,3*58 + 29 + 50,"grapes",fruits,iceblocks),Fruits(12*40 + 20 + 50,5*58 + 29 + 50,"grapes",fruits,iceblocks)] +
+        [Fruits(110+15*40,y,"grapes",fruits,iceblocks) for y in range(144,550,58)] + [Fruits(399,100,"coffee",fruits,iceblocks)],
+        [IceBlocks(50,y) for y in range(50,622-58,58)] + [IceBlocks(730,y) for y in range(50,622-58,58)] + 
+        [IceBlocks(x,50) for x in range(50+40,820-50-40,40)] + [IceBlocks(x,622-50-58) for x in range(50+40,820-50-40,40)] + 
+        [IceBlocks(50+4*40,y) for y in range(50+58*2,50+58*7,58)] + [IceBlocks(50+13*40,y) for y in range(50+58*2,50+58*7,58)] + 
+        [IceBlocks(50+5*40,50+58*2),IceBlocks(50+12*40,50+58*2),IceBlocks(50+5*40,50+58*6),IceBlocks(50+12*40,50+58*6)],
+
+        [Player(iceblocks,trolls,fruits)],
+        ]
+            round_atual = 2
+            all_sprites.empty()
+            fruits.empty()
+            players.empty()
+            iceblocks.empty()
+            trolls.empty()
+
+    for k, i in enumerate(round):
+        if k == 0:
+            for j in i:
+                trolls.add(j)
+                all_sprites.add(j)
+        if k == 1:
+            for j in i:
+                fruits.add(j)
+        if k == 2:
+            for j in i:
+                iceblocks.add(j)
+        if k == 3:
+            for j in i:
+                players.add(j)
+                all_sprites.add(j)
     return 0
 
 #Instancias do Minimenu e derivados
@@ -780,7 +800,6 @@ if True:
     buttons.update({
         back_button_surf:(back_button_rect,True)
     })
-
 
 # Montando layout do nível atual
 for k, i in enumerate(lvs[lv_atual-1].get(round_atual, [])):
@@ -852,12 +871,15 @@ while True:
                 if lv1_button_rect.collidepoint(event.pos):
                     active_screen = "gaming"
                     lv_atual = 1
+                    restart()
                 elif lv2_button_rect.collidepoint(event.pos) and lv_access[1][1]:
                     active_screen = "gaming"
                     lv_atual = 2
+                    restart()
                 elif lv3_button_rect.collidepoint(event.pos) and lv_access[1][1]:
                     active_screen = "gaming"
                     lv_atual = 3
+                    restart()
                 elif back_button_rect.collidepoint(event.pos):
                     active_screen = "start"
 
@@ -906,15 +928,14 @@ while True:
                     gelo.image.set_alpha(200)
 
         # Draw everything
-        for player in players:
-            if not player.winning:
-                fruits.draw(screen)
-                all_sprites.draw(screen)
-                iceblocks.draw(screen)
-            else:
-                fruits.draw(screen)
-                iceblocks.draw(screen)
-                all_sprites.draw(screen)
+        if not players.sprites()[0].winning:
+            fruits.draw(screen)
+            all_sprites.draw(screen)
+            iceblocks.draw(screen)
+        else:
+            fruits.draw(screen)
+            iceblocks.draw(screen)
+            all_sprites.draw(screen)
 
         # Montando layout do proximo round
         now = pygame.time.get_ticks()
@@ -924,53 +945,12 @@ while True:
                 round_atual += 1
                 player.done = False
                 fruits.empty()
-                if round_atual == 2:
-                    round2 = [
-                        [troll for troll in trolls],
-
-                        [Fruits(110,y,"peach",fruits,iceblocks) for y in range(144,144+58*2,58)] + 
-                        [Fruits(110,y,"peach",fruits,iceblocks) for y in range(550-58,550-58*3,-58)] + 
-                        [Fruits(110+15*40,y,"peach",fruits,iceblocks) for y in range(144,144+58*2,58)] + 
-                        [Fruits(110+15*40,y,"peach",fruits,iceblocks) for y in range(550-58,550-58*3,-58)] + 
-                        [Fruits(110+40,144,"peach",fruits,iceblocks),Fruits(110+40,550-58,"peach",fruits,iceblocks),Fruits(110+14*40,144,"peach",fruits,iceblocks),Fruits(110+14*40,550-58,"peach",fruits,iceblocks)] +
-                        [Fruits(5*40 + 20 + 50,3*58 + 29 + 50,"peach",fruits,iceblocks),Fruits(5*40 + 20 + 50,5*58 + 29 + 50,"peach",fruits,iceblocks), Fruits(12*40 + 20 + 50,3*58 + 29 + 50,"peach",fruits,iceblocks),Fruits(12*40 + 20 + 50,5*58 + 29 + 50,"peach",fruits,iceblocks)],
-
-                        [iceblock for iceblock in iceblocks],
-
-                        [player for player in players],
-                        ]
-                    for k, i in enumerate(round2):
-                        if k == 0:
-                            for j in i:
-                                trolls.add(j)
-                                all_sprites.add(j)
-                        if k == 1:
-                            for j in i:
-                                fruits.add(j)
-                        if k == 2:
-                            for j in i:
-                                iceblocks.add(j)
-                        if k == 3:
-                            for j in i:
-                                players.add(j)
-                                all_sprites.add(j)
-                if round_atual == 3:
-                    round3 = [
-                            [troll for troll in trolls],
-
-                            [Fruits(x,144,"pear",fruits,iceblocks) for x in range(110,820-50-40,40)] + 
-                            [Fruits(x,550-58,"pear",fruits,iceblocks) for x in range(110,820-50-40,40)] + 
-                            [Fruits(110,y,"pear",fruits,iceblocks) for y in range(144+58,550-58,58)] +
-                            [Fruits(110+15*40,y,"pear",fruits,iceblocks) for y in range(144+58,550-58,58)] +
-                            [Fruits(4*40 + 20 + 50,y,"pear",fruits,iceblocks) for y in range(2*58 + 29 + 50,7*58 + 29 + 50,58)] +
-                            [Fruits(13*40 + 20 + 50,y,"pear",fruits,iceblocks) for y in range(2*58 + 29 + 50,7*58 + 29 + 50,58)] +
-                            [Fruits(5*40 + 20 + 50,2*58 + 29 + 50,"pear",fruits,iceblocks),Fruits(5*40 + 20 + 50,6*58 + 29 + 50,"pear",fruits,iceblocks), Fruits(12*40 + 20 + 50,2*58 + 29 + 50,"pear",fruits,iceblocks),Fruits(12*40 + 20 + 50,6*58 + 29 + 50,"pear",fruits,iceblocks)],
-
-                            [iceblock for iceblock in iceblocks],
-
-                            [player for player in players],
-                            ]
-                    for k, i in enumerate(round3):
+                if round_atual != 1:
+                    round = lvs[lv_atual-1][round_atual]
+                    round[3] = []
+                    round[2] = []
+                    round[0] = []
+                    for k, i in enumerate(round):
                         if k == 0:
                             for j in i:
                                 trolls.add(j)
