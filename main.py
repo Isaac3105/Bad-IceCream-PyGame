@@ -577,7 +577,7 @@ fruits = pygame.sprite.Group()
 players = pygame.sprite.Group()
 all_sprites = pygame.sprite.Group(players,trolls) 
 
-# Niveis
+# Niveis e rounds
 lv1_round1 = [
         [Troll(130,224,iceblocks,trolls),
         Troll(730,224,iceblocks,trolls)],
@@ -624,11 +624,57 @@ lv1_round3 = [
         [player for player in players],
         ]
 
+lv2_round1 = [
+        [Troll(130,224,iceblocks,trolls),
+        Troll(730,224,iceblocks,trolls)],
+
+        [Fruits(110,y,"grapes",fruits,iceblocks) for y in range(144,550,58)] + 
+        [Fruits(5*40 + 20 + 50,3*58 + 29 + 50,"grapes",fruits,iceblocks),Fruits(5*40 + 20 + 50,5*58 + 29 + 50,"grapes",fruits,iceblocks), Fruits(12*40 + 20 + 50,3*58 + 29 + 50,"grapes",fruits,iceblocks),Fruits(12*40 + 20 + 50,5*58 + 29 + 50,"grapes",fruits,iceblocks)] +
+        [Fruits(110+15*40,y,"grapes",fruits,iceblocks) for y in range(144,550,58)] + [Fruits(399,100,"coffee",fruits,iceblocks)],
+        [IceBlocks(50,y) for y in range(50,622-58,58)] + [IceBlocks(730,y) for y in range(50,622-58,58)] + 
+        [IceBlocks(x,50) for x in range(50+40,820-50-40,40)] + [IceBlocks(x,622-50-58) for x in range(50+40,820-50-40,40)] + 
+        [IceBlocks(50+4*40,y) for y in range(50+58*2,50+58*7,58)] + [IceBlocks(50+13*40,y) for y in range(50+58*2,50+58*7,58)] + 
+        [IceBlocks(50+5*40,50+58*2),IceBlocks(50+12*40,50+58*2),IceBlocks(50+5*40,50+58*6),IceBlocks(50+12*40,50+58*6)],
+
+        [Player(iceblocks,trolls,fruits)],
+        ]
+
+lv2_round2 = [
+        [Troll(130,224,iceblocks,trolls),
+        Troll(730,224,iceblocks,trolls)],
+
+        [Fruits(110,y,"grapes",fruits,iceblocks) for y in range(144,550,58)] + 
+        [Fruits(5*40 + 20 + 50,3*58 + 29 + 50,"grapes",fruits,iceblocks),Fruits(5*40 + 20 + 50,5*58 + 29 + 50,"grapes",fruits,iceblocks), Fruits(12*40 + 20 + 50,3*58 + 29 + 50,"grapes",fruits,iceblocks),Fruits(12*40 + 20 + 50,5*58 + 29 + 50,"grapes",fruits,iceblocks)] +
+        [Fruits(110+15*40,y,"grapes",fruits,iceblocks) for y in range(144,550,58)] + [Fruits(399,100,"coffee",fruits,iceblocks)],
+        [IceBlocks(50,y) for y in range(50,622-58,58)] + [IceBlocks(730,y) for y in range(50,622-58,58)] + 
+        [IceBlocks(x,50) for x in range(50+40,820-50-40,40)] + [IceBlocks(x,622-50-58) for x in range(50+40,820-50-40,40)] + 
+        [IceBlocks(50+4*40,y) for y in range(50+58*2,50+58*7,58)] + [IceBlocks(50+13*40,y) for y in range(50+58*2,50+58*7,58)] + 
+        [IceBlocks(50+5*40,50+58*2),IceBlocks(50+12*40,50+58*2),IceBlocks(50+5*40,50+58*6),IceBlocks(50+12*40,50+58*6)],
+
+        [Player(iceblocks,trolls,fruits)],
+        ]
+
+lv2_round3 = [
+        [Troll(130,224,iceblocks,trolls),
+        Troll(730,224,iceblocks,trolls)],
+
+        [Fruits(110,y,"grapes",fruits,iceblocks) for y in range(144,550,58)] + 
+        [Fruits(5*40 + 20 + 50,3*58 + 29 + 50,"grapes",fruits,iceblocks),Fruits(5*40 + 20 + 50,5*58 + 29 + 50,"grapes",fruits,iceblocks), Fruits(12*40 + 20 + 50,3*58 + 29 + 50,"grapes",fruits,iceblocks),Fruits(12*40 + 20 + 50,5*58 + 29 + 50,"grapes",fruits,iceblocks)] +
+        [Fruits(110+15*40,y,"grapes",fruits,iceblocks) for y in range(144,550,58)] + [Fruits(399,100,"coffee",fruits,iceblocks)],
+        [IceBlocks(50,y) for y in range(50,622-58,58)] + [IceBlocks(730,y) for y in range(50,622-58,58)] + 
+        [IceBlocks(x,50) for x in range(50+40,820-50-40,40)] + [IceBlocks(x,622-50-58) for x in range(50+40,820-50-40,40)] + 
+        [IceBlocks(50+4*40,y) for y in range(50+58*2,50+58*7,58)] + [IceBlocks(50+13*40,y) for y in range(50+58*2,50+58*7,58)] + 
+        [IceBlocks(50+5*40,50+58*2),IceBlocks(50+12*40,50+58*2),IceBlocks(50+5*40,50+58*6),IceBlocks(50+12*40,50+58*6)],
+
+        [Player(iceblocks,trolls,fruits)],
+        ]
 
 # Dicionário para níveis
 lv1_rounds = {1:lv1_round1, 2:lv1_round2, 3:lv1_round3}
 
-lv2_rounds = {1: "dummy", 2: "dummy", 3: "dummy"}
+lv2_rounds = {1: lv2_round1, 2: lv2_round2, 3: lv2_round3}
+
+lvs = [lv1_rounds,lv2_rounds]
 
 round_final = 3
 lv_final = 3
@@ -682,7 +728,6 @@ def restart():
                         all_sprites.add(j)
     return 0
 
-
 #Instancias do Minimenu e derivados
 if True:
     icons = [pygame.transform.scale_by(pygame.image.load(f"Resources/minimenu/{i}.png"),3) for i in ["restart","pause","music"]]
@@ -727,15 +772,18 @@ if True:
     back_button_surf = pygame.image.load("Resources/levels_interface/pressed_back_button.png")
     back_button_rect = pygame.Rect(301,509,211,101)
 
+    lv_access = {    
+        0: (lv1_button_rect,True,lv1_button_surf),
+        1: (lv2_button_rect,False,lv2_button_surf),
+        2: (lv3_button_rect,False,lv3_button_surf)}
+
     buttons.update({
-        lv1_button_surf: (lv1_button_rect,True),
-        lv2_button_surf: (lv2_button_rect,False),
-        lv3_button_surf: (lv3_button_rect,False),
         back_button_surf:(back_button_rect,True)
     })
 
+
 # Montando layout do nível atual
-for k, i in enumerate(lv1_rounds.get(round_atual, [])):
+for k, i in enumerate(lvs[lv_atual-1].get(round_atual, [])):
     if k == 0:
         for j in i:
             trolls.add(j)
@@ -758,29 +806,38 @@ while True:
             pygame.quit()
             sys.exit()
 
-        # MiniMenu system
-        for button in buttons:
-            if buttons[button][0].collidepoint(pygame.mouse.get_pos()) and buttons[button][1]:
-                button.set_alpha(180)
-            else:
-                button.set_alpha(0)
+        # Pressed down button system
+        if True:
+            for button in buttons:
+                if buttons[button][0].collidepoint(pygame.mouse.get_pos()) and buttons[button][1]:
+                    button.set_alpha(180)
+                else:
+                    button.set_alpha(0)
+            for lvl in lv_access:
+                if lv_access[lvl][0].collidepoint(pygame.mouse.get_pos()) and lv_access[lvl][1]:
+                    lv_access[lvl][2].set_alpha(180)
+                else:
+                    lv_access[lvl][2].set_alpha(0)
 
         #All buttons system
         if event.type == pygame.MOUSEBUTTONDOWN:
             for j, rect in enumerate(rects):
-                if rect.collidepoint(event.pos):
-                    if j == 0 and active_screen == "gaming":
+                if rect.collidepoint(event.pos) and active_screen == "gaming" and not players.sprites()[0].winning: 
+                    if j == 0:
                         restart()
-                    elif j == 1 and active_screen == "gaming":
+                    elif j == 1:
                         active_screen = "paused"
                     elif j == 2:
                         # music = False
                         pass
+
             if active_screen == "paused":
                 if continue_button_rect.collidepoint(event.pos) :
                     active_screen = "gaming"
                 elif back_menu_button_rect.collidepoint(event.pos) :
+                    restart()
                     active_screen = "start"
+
             elif active_screen == "start":
                 if play_button_rect.collidepoint(event.pos):
                     active_screen = "levels"
@@ -790,14 +847,17 @@ while True:
                     pass
                 elif credits_button_rect.collidepoint(event.pos):
                     pass
+            
             elif active_screen == "levels":
                 if lv1_button_rect.collidepoint(event.pos):
                     active_screen = "gaming"
-                    #current_lvl = 1
-                elif lv2_button_rect.collidepoint(event.pos):
-                    pass
-                elif lv3_button_rect.collidepoint(event.pos):
-                    pass
+                    lv_atual = 1
+                elif lv2_button_rect.collidepoint(event.pos) and lv_access[1][1]:
+                    active_screen = "gaming"
+                    lv_atual = 2
+                elif lv3_button_rect.collidepoint(event.pos) and lv_access[1][1]:
+                    active_screen = "gaming"
+                    lv_atual = 3
                 elif back_button_rect.collidepoint(event.pos):
                     active_screen = "start"
 
@@ -931,27 +991,13 @@ while True:
             if len(fruits) == 0:
                 if round_atual == round_final:
                     player.winning = True
-                    print(now - player.winning_timer)
-                    # Update level access
-                    if 3017 >= now - player.winning_timer >= 3000:
-                        already_played.append(lv_atual)
-                        lv_atual += 1
-                        if lv_atual in already_played:
-                            lv_atual -= 1
-                        else:
-                            for button in buttons:
-                                if not buttons[button][1]:
-                                    print(buttons[button][1])
-                                    buttons[button] = (buttons[button][0],True)
-                                    break
                     if counter == 0:
                         player.winning_timer = pygame.time.get_ticks()
                         counter = 1
                     if now - player.winning_timer >= 5000:
                         player.winning = False
-                        lv_atual -= 1
                         restart()
-                        lv_atual += 1
+                        lv_access[lv_atual] = (lv_access[lv_atual][0],True,lv_access[lv_atual][2])
                         active_screen = "levels"
                 else:
                     player.done = True
@@ -986,7 +1032,7 @@ while True:
                 screen.blit(i, rect)
                 rects.append(rect)
                 x += 40
-                
+
     # Pause State
     elif active_screen == "paused":
         paused_interface = pygame.image.load("Resources/minimenu/Paused.webp")
