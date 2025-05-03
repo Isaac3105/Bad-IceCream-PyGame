@@ -53,7 +53,7 @@ class Fruits(pygame.sprite.Sprite):
 
 
 class Troll(pygame.sprite.Sprite):
-    def __init__(self,x,y,iceblocks,trolls):
+    def __init__(self,x,y,iceblocks,trolls,dic=(0, 0, "frente", 0)):
         super().__init__()
         self.image =  pygame.transform.scale2x(pygame.image.load("Resources/troll/frente/part1.png"))
         self.image.set_colorkey((49, 202, 49))  
@@ -70,7 +70,7 @@ class Troll(pygame.sprite.Sprite):
         self.cuspindo = False 
         self.destroying = False
         self.winning = False
-        self.dir, self.esq, self.fre, self.tra = 0, 0, "frente", 0
+        self.dir, self.esq, self.fre, self.tra = dic
         self.counter = 0
         self.index_movimento = 0
         self.duvidoso_index = 0
@@ -196,11 +196,11 @@ class IceBlocks(pygame.sprite.Sprite):
 
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self, ice_group,trolls,fruits):
+    def __init__(self,x,y,ice_group,trolls,fruits):
         super().__init__()
         self.image = pygame.transform.scale2x(pygame.image.load("Resources/choco/choco_andando/frente/part1.png"))
         self.image.set_colorkey((49, 202, 49))
-        self.rect = self.image.get_rect(topleft=(530,SCREEN_HEIGHT-50 -58*2))
+        self.rect = self.image.get_rect(topleft=(x,y))
         self.quebrando = [pygame.transform.scale2x(pygame.image.load(f"Resources/choco/choco_quebrando_gelo/part{i}.png")) for i in range(1,9)]
         self.cuspindo_direita_lista = [pygame.transform.scale2x(pygame.image.load(f"Resources/choco/choco_gelo/da direita/part{i}.png")) for i in range(1,9)]
         self.cuspindo_esquerda_lista = [pygame.transform.scale2x(pygame.image.load(f"Resources/choco/choco_gelo/da esquerda/part{i}.png")) for i in range(1,9)]
@@ -590,7 +590,7 @@ lv1_round1 = [
         [IceBlocks(50+4*40,y) for y in range(50+58*2,50+58*7,58)] + [IceBlocks(50+13*40,y) for y in range(50+58*2,50+58*7,58)] + 
         [IceBlocks(50+5*40,50+58*2),IceBlocks(50+12*40,50+58*2),IceBlocks(50+5*40,50+58*6),IceBlocks(50+12*40,50+58*6)],
 
-        [Player(iceblocks,trolls,fruits)],
+        [Player(450,SCREEN_HEIGHT-50 -58*2,iceblocks,trolls,fruits)],
         ]
 
 lv1_round2 = [
@@ -625,18 +625,27 @@ lv1_round3 = [
         ]
 
 lv2_round1 = [
-        [Troll(130,224,iceblocks,trolls),
-        Troll(730,224,iceblocks,trolls)],
+        [Troll(250,224,iceblocks,trolls),
+        Troll(610,224,iceblocks,trolls),
+        Troll(130,282,iceblocks,trolls),
+        Troll(450,SCREEN_HEIGHT-50 -58*2,iceblocks,trolls),
+        Troll(730,398,iceblocks,trolls)],
 
         [Fruits(110,y,"kiwi",fruits,iceblocks) for y in range(144,550,58)] + 
-        [Fruits(5*40 + 20 + 50,3*58 + 29 + 50,"grapes",fruits,iceblocks),Fruits(5*40 + 20 + 50,5*58 + 29 + 50,"grapes",fruits,iceblocks), Fruits(12*40 + 20 + 50,3*58 + 29 + 50,"grapes",fruits,iceblocks),Fruits(12*40 + 20 + 50,5*58 + 29 + 50,"grapes",fruits,iceblocks)] +
-        [Fruits(110+15*40,y,"grapes",fruits,iceblocks) for y in range(144,550,58)] + [Fruits(399,100,"coffee",fruits,iceblocks)],
+        [Fruits(4*40 + 20 + 50,3*58 + 29 + 50,"kiwi",fruits,iceblocks),Fruits(6*40 + 20 + 50,5*58 + 29 + 50,"kiwi",fruits,iceblocks), Fruits(13*40 + 20 + 50,58 + 29 + 50,"kiwi",fruits,iceblocks),Fruits(13*40 + 20 + 50,4*58 + 29 + 50,"kiwi",fruits,iceblocks)] +
+        [Fruits(110+15*40,y,"kiwi",fruits,iceblocks) for y in range(282+29,492,58)],
+
         [IceBlocks(50,y) for y in range(50,622-58,58)] + [IceBlocks(730,y) for y in range(50,622-58,58)] + 
         [IceBlocks(x,50) for x in range(50+40,820-50-40,40)] + [IceBlocks(x,622-50-58) for x in range(50+40,820-50-40,40)] + 
-        [IceBlocks(50+4*40,y) for y in range(50+58*2,50+58*7,58)] + [IceBlocks(50+13*40,y) for y in range(50+58*2,50+58*7,58)] + 
-        [IceBlocks(50+5*40,50+58*2),IceBlocks(50+12*40,50+58*2),IceBlocks(50+5*40,50+58*6),IceBlocks(50+12*40,50+58*6)],
-
-        [Player(iceblocks,trolls,fruits)],
+        [IceBlocks(50+4*40,y) for y in range(50+58*6,50+58*8,58)] + [IceBlocks(50+11*40,y) for y in range(50+58*1,50+58*8,58)] +
+        [IceBlocks(50+5*40,y) for y in range(50+58*1,50+58*7,58)] + [IceBlocks(50+13*40,y) for y in range(50+58*5,50+58*8,58)] +
+        [IceBlocks(50+3*40,y) for y in range(50+58*1,50+58*8,58)] + [IceBlocks(50+14*40,y) for y in range(50+58*1,50+58*8,58)] +
+        [IceBlocks(50+2*40,y) for y in range(50+58*1,50+58*8,58)] + [IceBlocks(50+12*40,y) for y in range(50+58*1,50+58*8,58)] +
+        [IceBlocks(50+6*40,y) for y in range(50+58*1,50+58*5,58)] + [IceBlocks(x,SCREEN_HEIGHT-50 -58*3) for x in range(50+40*6,50+40*11,40)] +
+        [IceBlocks(50+10*40,50+58*7)] +
+        [IceBlocks(x,50+2*58) for x in range(50+40*7,50+40*11,40)] + [IceBlocks(50+15*40,y) for y in range(50+58*1,50+58*8,58)] +
+        [IceBlocks(50+16*40,y) for y in range(50+58*1,50+58*4,58)],
+        [Player(370,50 + 58,iceblocks,trolls,fruits)],
         ]
 
 lv2_round2 = [
@@ -651,7 +660,7 @@ lv2_round2 = [
         [IceBlocks(50+4*40,y) for y in range(50+58*2,50+58*7,58)] + [IceBlocks(50+13*40,y) for y in range(50+58*2,50+58*7,58)] + 
         [IceBlocks(50+5*40,50+58*2),IceBlocks(50+12*40,50+58*2),IceBlocks(50+5*40,50+58*6),IceBlocks(50+12*40,50+58*6)],
 
-        [Player(iceblocks,trolls,fruits)],
+        [Player(450,SCREEN_HEIGHT-50 -58*2,iceblocks,trolls,fruits)],
         ]
 
 lv2_round3 = [
@@ -660,13 +669,13 @@ lv2_round3 = [
 
         [Fruits(110,y,"grapes",fruits,iceblocks) for y in range(144,550,58)] + 
         [Fruits(5*40 + 20 + 50,3*58 + 29 + 50,"grapes",fruits,iceblocks),Fruits(5*40 + 20 + 50,5*58 + 29 + 50,"grapes",fruits,iceblocks), Fruits(12*40 + 20 + 50,3*58 + 29 + 50,"grapes",fruits,iceblocks),Fruits(12*40 + 20 + 50,5*58 + 29 + 50,"grapes",fruits,iceblocks)] +
-        [Fruits(110+15*40,y,"grapes",fruits,iceblocks) for y in range(144,550,58)] + [Fruits(399,100,"coffee",fruits,iceblocks)],
+        [Fruits(110+15*40,y,"grapes",fruits,iceblocks) for y in range(144,550,58)],
         [IceBlocks(50,y) for y in range(50,622-58,58)] + [IceBlocks(730,y) for y in range(50,622-58,58)] + 
         [IceBlocks(x,50) for x in range(50+40,820-50-40,40)] + [IceBlocks(x,622-50-58) for x in range(50+40,820-50-40,40)] + 
         [IceBlocks(50+4*40,y) for y in range(50+58*2,50+58*7,58)] + [IceBlocks(50+13*40,y) for y in range(50+58*2,50+58*7,58)] + 
         [IceBlocks(50+5*40,50+58*2),IceBlocks(50+12*40,50+58*2),IceBlocks(50+5*40,50+58*6),IceBlocks(50+12*40,50+58*6)],
 
-        [Player(iceblocks,trolls,fruits)],
+        [Player(450,SCREEN_HEIGHT-50 -58*2,iceblocks,trolls,fruits)],
         ]
 
 # Dicionário para níveis
@@ -700,7 +709,7 @@ def restart():
                 [IceBlocks(50+4*40,y) for y in range(50+58*2,50+58*7,58)] + [IceBlocks(50+13*40,y) for y in range(50+58*2,50+58*7,58)] + 
                 [IceBlocks(50+5*40,50+58*2),IceBlocks(50+12*40,50+58*2),IceBlocks(50+5*40,50+58*6),IceBlocks(50+12*40,50+58*6)],
 
-                [Player(iceblocks,trolls,fruits)],
+                [Player(450,SCREEN_HEIGHT-50 -58*2,iceblocks,trolls,fruits)],
                 ]
             round_atual = 1
             all_sprites.empty()
@@ -711,20 +720,29 @@ def restart():
     
     if lv_atual == 2:
             round = [
-        [Troll(130,224,iceblocks,trolls),
-        Troll(730,224,iceblocks,trolls)],
+        [Troll(250,224,iceblocks,trolls),
+        Troll(610,224,iceblocks,trolls),
+        Troll(130,282,iceblocks,trolls),
+        Troll(450,SCREEN_HEIGHT-50 -58*2,iceblocks,trolls),
+        Troll(730,398,iceblocks,trolls)],
 
         [Fruits(110,y,"kiwi",fruits,iceblocks) for y in range(144,550,58)] + 
-        [Fruits(5*40 + 20 + 50,3*58 + 29 + 50,"grapes",fruits,iceblocks),Fruits(5*40 + 20 + 50,5*58 + 29 + 50,"grapes",fruits,iceblocks), Fruits(12*40 + 20 + 50,3*58 + 29 + 50,"grapes",fruits,iceblocks),Fruits(12*40 + 20 + 50,5*58 + 29 + 50,"grapes",fruits,iceblocks)] +
-        [Fruits(110+15*40,y,"grapes",fruits,iceblocks) for y in range(144,550,58)] + [Fruits(399,100,"coffee",fruits,iceblocks)],
+        [Fruits(4*40 + 20 + 50,3*58 + 29 + 50,"kiwi",fruits,iceblocks),Fruits(6*40 + 20 + 50,5*58 + 29 + 50,"kiwi",fruits,iceblocks), Fruits(13*40 + 20 + 50,58 + 29 + 50,"kiwi",fruits,iceblocks),Fruits(13*40 + 20 + 50,4*58 + 29 + 50,"kiwi",fruits,iceblocks)] +
+        [Fruits(110+15*40,y,"kiwi",fruits,iceblocks) for y in range(282+29,492,58)],
+
         [IceBlocks(50,y) for y in range(50,622-58,58)] + [IceBlocks(730,y) for y in range(50,622-58,58)] + 
         [IceBlocks(x,50) for x in range(50+40,820-50-40,40)] + [IceBlocks(x,622-50-58) for x in range(50+40,820-50-40,40)] + 
-        [IceBlocks(50+4*40,y) for y in range(50+58*2,50+58*7,58)] + [IceBlocks(50+13*40,y) for y in range(50+58*2,50+58*7,58)] + 
-        [IceBlocks(50+5*40,50+58*2),IceBlocks(50+12*40,50+58*2),IceBlocks(50+5*40,50+58*6),IceBlocks(50+12*40,50+58*6)],
-
-        [Player(iceblocks,trolls,fruits)],
+        [IceBlocks(50+4*40,y) for y in range(50+58*6,50+58*8,58)] + [IceBlocks(50+11*40,y) for y in range(50+58*1,50+58*8,58)] +
+        [IceBlocks(50+5*40,y) for y in range(50+58*1,50+58*7,58)] + [IceBlocks(50+13*40,y) for y in range(50+58*5,50+58*8,58)] +
+        [IceBlocks(50+3*40,y) for y in range(50+58*1,50+58*8,58)] + [IceBlocks(50+14*40,y) for y in range(50+58*1,50+58*8,58)] +
+        [IceBlocks(50+2*40,y) for y in range(50+58*1,50+58*8,58)] + [IceBlocks(50+12*40,y) for y in range(50+58*1,50+58*8,58)] +
+        [IceBlocks(50+6*40,y) for y in range(50+58*1,50+58*5,58)] + [IceBlocks(x,SCREEN_HEIGHT-50 -58*3) for x in range(50+40*6,50+40*11,40)] +
+        [IceBlocks(50+10*40,50+58*7)] +
+        [IceBlocks(x,50+2*58) for x in range(50+40*7,50+40*11,40)] + [IceBlocks(50+15*40,y) for y in range(50+58*1,50+58*8,58)] +
+        [IceBlocks(50+16*40,y) for y in range(50+58*1,50+58*4,58)],
+        [Player(370,50 + 58,iceblocks,trolls,fruits)],
         ]
-            round_atual = 2
+            round_atual = 1
             all_sprites.empty()
             fruits.empty()
             players.empty()
