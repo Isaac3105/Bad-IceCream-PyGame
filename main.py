@@ -632,7 +632,7 @@ lv2_round1 = [
         Troll(730,398,iceblocks,trolls)],
 
         [Fruits(110,y,"strawberry",fruits,iceblocks) for y in range(144,550,58)] + 
-        [Fruits(4*40 + 20 + 50,3*58 + 29 + 50,"strawberry",fruits,iceblocks),Fruits(6*40 + 20 + 50,5*58 + 29 + 50,"strawberry",fruits,iceblocks), Fruits(13*40 + 20 + 50,58 + 29 + 50,"strawberry",fruits,iceblocks),Fruits(13*40 + 20 + 50,4*58 + 29 + 50,"strawberry",fruits,iceblocks)] +
+        [Fruits(4*40 + 20 + 50,1*58 + 29 + 50,"strawberry",fruits,iceblocks),Fruits(4*40 + 20 + 50,5*58 + 29 + 50,"strawberry",fruits,iceblocks),Fruits(5*40 + 20 + 50,7*58 + 29 + 50,"strawberry",fruits,iceblocks),Fruits(9*40 + 20 + 50,7*58 + 29 + 50,"strawberry",fruits,iceblocks),Fruits(6*40 + 20 + 50,5*58 + 29 + 50,"strawberry",fruits,iceblocks), Fruits(13*40 + 20 + 50,58 + 29 + 50,"strawberry",fruits,iceblocks),Fruits(13*40 + 20 + 50,4*58 + 29 + 50,"strawberry",fruits,iceblocks)] +
         [Fruits(110+15*40,y,"strawberry",fruits,iceblocks) for y in range(282+29,492,58)],
 
         [IceBlocks(50,y) for y in range(50,622-58,58)] + [IceBlocks(730,y) for y in range(50,622-58,58)] + 
@@ -651,10 +651,16 @@ lv2_round1 = [
 lv2_round2 = [
         [troll for troll in trolls],
 
-        [Fruits(210 + col * 40 +20, 116 + row * 58 + 29, "orange", fruits, iceblocks)
-        for col in range(4) for row in range(1,4,2)] +
-        [Fruits(510 + col * 40 + 20, 174 + row * 58 + 29, "orange", fruits, iceblocks)
-        for col in range(4) for row in range(1,4,2)],
+        [Fruits(50 + col * 40 +20, 50 + row * 58 + 29, "orange", fruits, iceblocks)
+        for col in range(0,18) for row in range(0,4,2)] +
+        [Fruits(50 + col * 40 +20, 622 - 50 - row * 58 - 29, "orange", fruits, iceblocks)
+        for col in range(0,18) for row in range(0,4,2)] +
+
+        [Fruits(50 + col * 40 +20, 224 + row * 58 + 29, "orange", fruits, iceblocks)
+        for col in range(0,7) for row in range(0,4,2)] +
+        [Fruits(50 + col * 40 +20, 224 + row * 58 + 29, "orange", fruits, iceblocks)
+        for col in range(11,18) for row in range(0,4,2)],
+        
 
         [Iceblock for Iceblock in iceblocks],
         [player for player in players],
@@ -725,7 +731,7 @@ def restart():
         Troll(730,398,iceblocks,trolls)],
 
         [Fruits(110,y,"strawberry",fruits,iceblocks) for y in range(144,550,58)] + 
-        [Fruits(4*40 + 20 + 50,3*58 + 29 + 50,"strawberry",fruits,iceblocks),Fruits(6*40 + 20 + 50,5*58 + 29 + 50,"strawberry",fruits,iceblocks), Fruits(13*40 + 20 + 50,58 + 29 + 50,"strawberry",fruits,iceblocks),Fruits(13*40 + 20 + 50,4*58 + 29 + 50,"strawberry",fruits,iceblocks)] +
+        [Fruits(4*40 + 20 + 50,1*58 + 29 + 50,"strawberry",fruits,iceblocks),Fruits(4*40 + 20 + 50,5*58 + 29 + 50,"strawberry",fruits,iceblocks),Fruits(5*40 + 20 + 50,7*58 + 29 + 50,"strawberry",fruits,iceblocks),Fruits(9*40 + 20 + 50,7*58 + 29 + 50,"strawberry",fruits,iceblocks),Fruits(6*40 + 20 + 50,5*58 + 29 + 50,"strawberry",fruits,iceblocks), Fruits(13*40 + 20 + 50,58 + 29 + 50,"strawberry",fruits,iceblocks),Fruits(13*40 + 20 + 50,4*58 + 29 + 50,"strawberry",fruits,iceblocks)] +
         [Fruits(110+15*40,y,"strawberry",fruits,iceblocks) for y in range(282+29,492,58)],
 
         [IceBlocks(50,y) for y in range(50,622-58,58)] + [IceBlocks(730,y) for y in range(50,622-58,58)] + 
