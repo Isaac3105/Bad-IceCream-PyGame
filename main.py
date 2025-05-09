@@ -796,15 +796,15 @@ def get_round(level, round):
 
     if level == 1 == round:
         return l1_r1
-    elif level == 1 and  round == 2:
+    elif level == 1 and round == 2:
         return l1_r2
-    elif level == 1 and  round == 3:
+    elif level == 1 and round == 3:
         return l1_r3
-    elif level == 2 and  round == 1:
+    elif level == 2 and round == 1:
         return l2_r1
-    elif level == 2 and  round == 2:
+    elif level == 2 and round == 2:
         return l2_r2
-    elif level == 2 and  round == 3:
+    elif level == 2 and round == 3:
         return l2_r3
 
 # Dicionários para níveis
