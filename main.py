@@ -348,83 +348,6 @@ class Player(pygame.sprite.Sprite):
                 self.image = pygame.transform.scale2x(pygame.image.load("Resources/choco/choco_andando/esquerda/part1.png"))
         self.image.set_colorkey((49, 202, 49))
 
-    def update(self):
-        keys = pygame.key.get_pressed()
-        speed = 5
-        # Ice creation
-        if keys[pygame.K_f] and (not self.morrendo) and (not self.destroying) and self.rect.bottomleft == self.last_pos:
-            self.cuspindo = True
-        # Ice destruction
-        if keys[pygame.K_SPACE] and self.is_ice_nearby() and (not self.morrendo) and (not self.cuspindo) and self.rect.bottomleft == self.last_pos:
-            self.destroying = True
-
-        # Movement
-        if (not self.destroying) and (not self.cuspindo) and (not self.morrendo)  and (not self.andando):
-            if keys[pygame.K_d] or keys[pygame.K_RIGHT]:
-                if self.counter == 0:
-                    self.dir, self.esq, self.fre, self.tra = 1, 0, 0, 0
-                    self.counter = 10
-                    self.andando = False
-            elif keys[pygame.K_a] or keys[pygame.K_LEFT]:
-                if self.counter == 0:
-                    self.dir, self.esq, self.fre, self.tra = 0, 1, 0, 0
-                    self.counter = 10
-                    self.andando = False
-            elif keys[pygame.K_w] or keys[pygame.K_UP]:
-                if self.counter == 0:
-                    self.dir, self.esq, self.fre, self.tra = 0, 0, 0, 1
-                    self.counter = 14
-                    self.andando = False
-            elif (keys[pygame.K_s] or keys[pygame.K_DOWN]):
-                if self.counter == 0:
-                    self.dir, self.esq, self.fre, self.tra = 0, 0, 1, 0
-                    self.counter = 14
-                    self.andando = False
-
-        # Keep player inside the walls
-        self.rect.x = max(WALL_SIZE, min(self.rect.x, SCREEN_WIDTH - WALL_SIZE - self.rect.width))
-        self.rect.y = max(WALL_SIZE, min(self.rect.y, SCREEN_HEIGHT - WALL_SIZE - self.rect.height))
-
-        # Prevent player from colliding with iglu
-        if self.rect.colliderect(iglu_inv_rect):
-            self.rect.bottomleft = self.last_pos
-
-        # Prevent player from walking into ice
-        for iceblock in self.ice_group:
-            if self.rect.colliderect(iceblock):
-                self.rect.bottomleft = self.last_pos
-
-        #Player dies if he touches enemies
-        if any(self.rect.colliderect(troll) for troll in self.trolls):
-            self.morrendo = True
-
-        # Fruit disappears if player comes in contact with the fruit
-        for fruit in self.fruits:
-            if self.rect.colliderect(fruit):
-                self.comendo = True
-                self.fruta_comida = fruit
-
-        if self.destroying:
-            self.animation_quebrando()
-
-        if self.cuspindo:
-            self.animation_cuspindo_gelo()
-
-        if self.morrendo:
-            self.animation_morrendo()
-
-        if self.andando:
-            self.animation_andando()
-        
-        if self.comendo:
-            self.animation_comendo()
-
-        if self.winning:
-            self.animation_vencendo()
-
-
-        self.last_pos = self.rect.bottomleft
-
     def place_ice(self):
         """Places ice continually in the direction of the player until it reaches an obstacle"""
         x, y = self.rect.topleft
@@ -573,6 +496,84 @@ class Player(pygame.sprite.Sprite):
 
         except KeyError:
             pass
+
+    def update(self):
+        keys = pygame.key.get_pressed()
+        speed = 5
+        # Ice creation
+        if keys[pygame.K_f] and (not self.morrendo) and (not self.destroying) and self.rect.bottomleft == self.last_pos:
+            self.cuspindo = True
+        # Ice destruction
+        if keys[pygame.K_SPACE] and self.is_ice_nearby() and (not self.morrendo) and (not self.cuspindo) and self.rect.bottomleft == self.last_pos:
+            self.destroying = True
+
+        # Movement
+        if (not self.destroying) and (not self.cuspindo) and (not self.morrendo)  and (not self.andando) and (not self.winning):
+            if keys[pygame.K_d] or keys[pygame.K_RIGHT]:
+                if self.counter == 0:
+                    self.dir, self.esq, self.fre, self.tra = 1, 0, 0, 0
+                    self.counter = 10
+                    self.andando = False
+            elif keys[pygame.K_a] or keys[pygame.K_LEFT]:
+                if self.counter == 0:
+                    self.dir, self.esq, self.fre, self.tra = 0, 1, 0, 0
+                    self.counter = 10
+                    self.andando = False
+            elif keys[pygame.K_w] or keys[pygame.K_UP]:
+                if self.counter == 0:
+                    self.dir, self.esq, self.fre, self.tra = 0, 0, 0, 1
+                    self.counter = 14
+                    self.andando = False
+            elif (keys[pygame.K_s] or keys[pygame.K_DOWN]):
+                if self.counter == 0:
+                    self.dir, self.esq, self.fre, self.tra = 0, 0, 1, 0
+                    self.counter = 14
+                    self.andando = False
+
+        # Keep player inside the walls
+        self.rect.x = max(WALL_SIZE, min(self.rect.x, SCREEN_WIDTH - WALL_SIZE - self.rect.width))
+        self.rect.y = max(WALL_SIZE, min(self.rect.y, SCREEN_HEIGHT - WALL_SIZE - self.rect.height))
+
+        # Prevent player from colliding with iglu
+        if self.rect.colliderect(iglu_inv_rect):
+            self.rect.bottomleft = self.last_pos
+
+        # Prevent player from walking into ice
+        for iceblock in self.ice_group:
+            if self.rect.colliderect(iceblock):
+                self.rect.bottomleft = self.last_pos
+
+        #Player dies if he touches enemies
+        if any(self.rect.colliderect(troll) for troll in self.trolls):
+            self.morrendo = True
+
+        # Fruit disappears if player comes in contact with the fruit
+        for fruit in self.fruits:
+            if self.rect.colliderect(fruit):
+                self.comendo = True
+                self.fruta_comida = fruit
+
+        if self.destroying:
+            self.animation_quebrando()
+
+        if self.cuspindo:
+            self.animation_cuspindo_gelo()
+
+        if self.morrendo:
+            self.animation_morrendo()
+
+        if self.andando:
+            self.animation_andando()
+        
+        if self.comendo:
+            self.animation_comendo()
+
+        if self.winning:
+            self.andando = False
+            self.animation_vencendo()
+
+
+        self.last_pos = self.rect.bottomleft
 
 
 # Sprite groups
@@ -984,7 +985,7 @@ while True:
 
         # Grid-moving system for player and trolls
         for player in all_sprites:
-            if player.counter > 0 and not player.duvido:
+            if player.counter > 0 and not player.duvido and not player.winning:
                 player.andando = True
             else:
                 player.andando = False
