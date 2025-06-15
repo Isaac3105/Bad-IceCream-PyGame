@@ -923,7 +923,11 @@ while True:
                 else:
                     button.set_alpha(0)
             for lvl in lv_access:
-                if lv_access[lvl][0].collidepoint(pygame.mouse.get_pos()) and lv_access[lvl][1]:
+                #if lv_access[lvl][0].collidepoint(pygame.mouse.get_pos()) and lv_access[lvl][1]: esse é para não dar hover em 
+                #níveis que vc ainda não pode jogar
+
+                if lv_access[lvl][0].collidepoint(pygame.mouse.get_pos()): # esse é para dar hover independentemente se 
+                #vc já passou ou não no nível
                     lv_access[lvl][2].set_alpha(180)
                 else:
                     lv_access[lvl][2].set_alpha(0)
