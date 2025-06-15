@@ -13,6 +13,6 @@ Open main.py on vscode and press run, but be careful, it is addictive!😊
 
 Have fun!!!
 
-### (NOT FINISHED, ONLY LEVEL 1 IS DONE)
+### (NOT FINISHED, LEVEL 3 IS NOT DONE)
 
 
