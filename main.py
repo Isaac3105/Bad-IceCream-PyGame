@@ -591,6 +591,7 @@ lv1_round1 = [
         [Fruits(110,y,"grapes",fruits,iceblocks) for y in range(144,550,58)] + 
         [Fruits(5*40 + 20 + 50,3*58 + 29 + 50,"grapes",fruits,iceblocks),Fruits(5*40 + 20 + 50,5*58 + 29 + 50,"grapes",fruits,iceblocks), Fruits(12*40 + 20 + 50,3*58 + 29 + 50,"grapes",fruits,iceblocks),Fruits(12*40 + 20 + 50,5*58 + 29 + 50,"grapes",fruits,iceblocks)] +
         [Fruits(110+15*40,y,"grapes",fruits,iceblocks) for y in range(144,550,58)],
+        
         [IceBlocks(50,y) for y in range(50,622-58,58)] + [IceBlocks(730,y) for y in range(50,622-58,58)] + 
         [IceBlocks(x,50) for x in range(50+40,820-50-40,40)] + [IceBlocks(x,622-50-58) for x in range(50+40,820-50-40,40)] + 
         [IceBlocks(50+4*40,y) for y in range(50+58*2,50+58*7,58)] + [IceBlocks(50+13*40,y) for y in range(50+58*2,50+58*7,58)] + 
@@ -651,6 +652,7 @@ lv2_round1 = [
         [IceBlocks(50+10*40,50+58*7)] +
         [IceBlocks(x,50+2*58) for x in range(50+40*7,50+40*11,40)] + [IceBlocks(50+15*40,y) for y in range(50+58*1,50+58*8,58)] +
         [IceBlocks(50+16*40,y) for y in range(50+58*1,50+58*4,58)],
+
         [Player(370,50 + 58,iceblocks,trolls,fruits)],
         ]
 
@@ -669,6 +671,7 @@ lv2_round2 = [
         
 
         [Iceblock for Iceblock in iceblocks],
+
         [player for player in players],
         ]
 
@@ -685,7 +688,24 @@ lv2_round3 = [
         Fruits(50 + 11 * 40 + 20, 50 + 5 * 58 + 29,"pepper",fruits,iceblocks)],
 
         [Iceblock for Iceblock in iceblocks],
+
         [player for player in players],
+        ]
+
+lv3_round1 = [
+        [Troll(130,224,iceblocks,trolls),
+        Troll(730,224,iceblocks,trolls)],
+
+        [Fruits(110,y,"lemon",fruits,iceblocks) for y in range(144,550,58)] + 
+        [Fruits(5*40 + 20 + 50,3*58 + 29 + 50,"lemon",fruits,iceblocks),Fruits(5*40 + 20 + 50,5*58 + 29 + 50,"lemon",fruits,iceblocks), Fruits(12*40 + 20 + 50,3*58 + 29 + 50,"lemon",fruits,iceblocks),Fruits(12*40 + 20 + 50,5*58 + 29 + 50,"lemon",fruits,iceblocks)] +
+        [Fruits(110+15*40,y,"lemon",fruits,iceblocks) for y in range(144,550,58)],
+
+        [IceBlocks(50,y) for y in range(50,622-58,58)] + [IceBlocks(730,y) for y in range(50,622-58,58)] + 
+        [IceBlocks(x,50) for x in range(50+40,820-50-40,40)] + [IceBlocks(x,622-50-58) for x in range(50+40,820-50-40,40)] + 
+        [IceBlocks(50+4*40,y) for y in range(50+58*2,50+58*7,58)] + [IceBlocks(50+13*40,y) for y in range(50+58*2,50+58*7,58)] + 
+        [IceBlocks(50+5*40,50+58*2),IceBlocks(50+12*40,50+58*2),IceBlocks(50+5*40,50+58*6),IceBlocks(50+12*40,50+58*6)],
+
+        [Player(450,SCREEN_HEIGHT-50 -58*2,iceblocks,trolls,fruits)],
         ]
 
 # Simple way to get unaltered lists for any round of any level
@@ -795,6 +815,21 @@ def get_round(level, round):
             [player for player in players],
             ]
 
+    l3_r1 = [
+        [Troll(130,224,iceblocks,trolls),
+        Troll(730,224,iceblocks,trolls)],
+
+        [Fruits(110,y,"grapes",fruits,iceblocks) for y in range(144,550,58)] + 
+        [Fruits(5*40 + 20 + 50,3*58 + 29 + 50,"grapes",fruits,iceblocks),Fruits(5*40 + 20 + 50,5*58 + 29 + 50,"grapes",fruits,iceblocks), Fruits(12*40 + 20 + 50,3*58 + 29 + 50,"grapes",fruits,iceblocks),Fruits(12*40 + 20 + 50,5*58 + 29 + 50,"grapes",fruits,iceblocks)] +
+        [Fruits(110+15*40,y,"grapes",fruits,iceblocks) for y in range(144,550,58)],
+        [IceBlocks(50,y) for y in range(50,622-58,58)] + [IceBlocks(730,y) for y in range(50,622-58,58)] + 
+        [IceBlocks(x,50) for x in range(50+40,820-50-40,40)] + [IceBlocks(x,622-50-58) for x in range(50+40,820-50-40,40)] + 
+        [IceBlocks(50+4*40,y) for y in range(50+58*2,50+58*7,58)] + [IceBlocks(50+13*40,y) for y in range(50+58*2,50+58*7,58)] + 
+        [IceBlocks(50+5*40,50+58*2),IceBlocks(50+12*40,50+58*2),IceBlocks(50+5*40,50+58*6),IceBlocks(50+12*40,50+58*6)],
+
+        [Player(450,SCREEN_HEIGHT-50 -58*2,iceblocks,trolls,fruits)],
+        ]
+
     if level == 1 == round:
         return l1_r1
     elif level == 1 and round == 2:
@@ -807,13 +842,17 @@ def get_round(level, round):
         return l2_r2
     elif level == 2 and round == 3:
         return l2_r3
+    elif level == 3 and round == 1:
+        return l3_r1
 
 # Dicionários para níveis
 lv1_rounds = {1:lv1_round1, 2:lv1_round2, 3:lv1_round3}
 
 lv2_rounds = {1: lv2_round1, 2: lv2_round2, 3: lv2_round3}
 
-lvs = [lv1_rounds,lv2_rounds]
+lv3_rounds = {1: lv3_round1, 2: lv2_round2, 3: lv2_round3}
+
+lvs = [lv1_rounds,lv2_rounds,lv3_rounds]
 
 round_final = 3
 lv_final = 3
@@ -970,7 +1009,7 @@ while True:
                     active_screen = "gaming"
                     lv_atual = 2
                     restart()
-                elif lv3_button_rect.collidepoint(event.pos) and lv_access[1][1]:
+                elif lv3_button_rect.collidepoint(event.pos) and lv_access[2][1]:
                     active_screen = "gaming"
                     lv_atual = 3
                     restart()
