@@ -728,6 +728,29 @@ lv3_round1 = [
         [Player(730,SCREEN_HEIGHT-50 -58*2,iceblocks,trolls,fruits)],
         ]
 
+lv3_round2 = [
+        [troll for troll in trolls],
+
+        [Fruits(70,y,"lemon",fruits,iceblocks) for y in range(144,550,58*2)] + 
+        [Fruits(70 + 40*1,y,"lemon",fruits,iceblocks) for y in range(144-58,550+58,58*2)] + 
+        [Fruits(70 + 40*2,y,"lemon",fruits,iceblocks) for y in range(144,550,58*2)] + 
+        [Fruits(70 + 40*3,y,"lemon",fruits,iceblocks) for y in range(144-58,550+58,58*2)] + 
+        [Fruits(70 + 40*4,y,"lemon",fruits,iceblocks) for y in range(144,550,58*2)] + 
+        [Fruits(70 + 40*5,y,"lemon",fruits,iceblocks) for y in range(144-58,550+58,58*2)] + 
+        [Fruits(70 + 40*6,y,"lemon",fruits,iceblocks) for y in range(144,550,58*2)] +
+        [Fruits(70 + 40*11,y,"lemon",fruits,iceblocks) for y in range(144,550,58*2)] + 
+        [Fruits(70 + 40*12,y,"lemon",fruits,iceblocks) for y in range(144-58,550+58,58*2)] + 
+        [Fruits(70 + 40*13,y,"lemon",fruits,iceblocks) for y in range(144,550,58*2)] + 
+        [Fruits(70 + 40*14,y,"lemon",fruits,iceblocks) for y in range(144-58,550+58,58*2)] + 
+        [Fruits(70 + 40*15,y,"lemon",fruits,iceblocks) for y in range(144,550,58*2)] + 
+        [Fruits(70 + 40*16,y,"lemon",fruits,iceblocks) for y in range(144-58,550+58,58*2)] + 
+        [Fruits(70 + 40*17,y,"lemon",fruits,iceblocks) for y in range(144,550,58*2)],
+
+        [Iceblock for Iceblock in iceblocks],
+
+        [player for player in players],
+        ]
+
 # Simple way to get unaltered lists for any round of any level
 def get_round(level, round):
 
@@ -871,6 +894,29 @@ def get_round(level, round):
         [Player(730,SCREEN_HEIGHT-50 -58*2,iceblocks,trolls,fruits)],
         ]
 
+    l3_r2 = [
+        [troll for troll in trolls],
+
+        [Fruits(70,y,"lemon",fruits,iceblocks) for y in range(144,550,58*2)] + 
+        [Fruits(70 + 40*1,y,"lemon",fruits,iceblocks) for y in range(144-58,550+58,58*2)] + 
+        [Fruits(70 + 40*2,y,"lemon",fruits,iceblocks) for y in range(144,550,58*2)] + 
+        [Fruits(70 + 40*3,y,"lemon",fruits,iceblocks) for y in range(144-58,550+58,58*2)] + 
+        [Fruits(70 + 40*4,y,"lemon",fruits,iceblocks) for y in range(144,550,58*2)] + 
+        [Fruits(70 + 40*5,y,"lemon",fruits,iceblocks) for y in range(144-58,550+58,58*2)] + 
+        [Fruits(70 + 40*6,y,"lemon",fruits,iceblocks) for y in range(144,550,58*2)] +
+        [Fruits(70 + 40*11,y,"lemon",fruits,iceblocks) for y in range(144,550,58*2)] + 
+        [Fruits(70 + 40*12,y,"lemon",fruits,iceblocks) for y in range(144-58,550+58,58*2)] + 
+        [Fruits(70 + 40*13,y,"lemon",fruits,iceblocks) for y in range(144,550,58*2)] + 
+        [Fruits(70 + 40*14,y,"lemon",fruits,iceblocks) for y in range(144-58,550+58,58*2)] + 
+        [Fruits(70 + 40*15,y,"lemon",fruits,iceblocks) for y in range(144,550,58*2)] + 
+        [Fruits(70 + 40*16,y,"lemon",fruits,iceblocks) for y in range(144-58,550+58,58*2)] + 
+        [Fruits(70 + 40*17,y,"lemon",fruits,iceblocks) for y in range(144,550,58*2)],
+
+        [Iceblock for Iceblock in iceblocks],
+
+        [player for player in players],
+        ]
+
     if level == 1 == round:
         return l1_r1
     elif level == 1 and round == 2:
@@ -885,13 +931,15 @@ def get_round(level, round):
         return l2_r3
     elif level == 3 and round == 1:
         return l3_r1
+    elif level == 3 and round == 2:
+        return l3_r2
 
 # Dicionários para níveis
 lv1_rounds = {1:lv1_round1, 2:lv1_round2, 3:lv1_round3}
 
 lv2_rounds = {1: lv2_round1, 2: lv2_round2, 3: lv2_round3}
 
-lv3_rounds = {1: lv3_round1, 2: lv2_round2, 3: lv2_round3}
+lv3_rounds = {1: lv3_round1, 2: lv3_round2, 3: lv2_round3}
 
 lvs = [lv1_rounds,lv2_rounds,lv3_rounds]
 
