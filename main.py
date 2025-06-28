@@ -731,21 +731,23 @@ lv3_round1 = [
 lv3_round2 = [
         [troll for troll in trolls],
 
-        [Fruits(70,y,"lemon",fruits,iceblocks) for y in range(144,550,58*2)] + 
-        [Fruits(70 + 40*1,y,"lemon",fruits,iceblocks) for y in range(144-58,550+58,58*2)] + 
-        [Fruits(70 + 40*2,y,"lemon",fruits,iceblocks) for y in range(144,550,58*2)] + 
-        [Fruits(70 + 40*3,y,"lemon",fruits,iceblocks) for y in range(144-58,550+58,58*2)] + 
-        [Fruits(70 + 40*4,y,"lemon",fruits,iceblocks) for y in range(144,550,58*2)] + 
-        [Fruits(70 + 40*5,y,"lemon",fruits,iceblocks) for y in range(144-58,550+58,58*2)] + 
-        [Fruits(70 + 40*6,y,"lemon",fruits,iceblocks) for y in range(144,550,58*2)] +
-        [Fruits(70 + 40*11,y,"lemon",fruits,iceblocks) for y in range(144,550,58*2)] + 
-        [Fruits(70 + 40*12,y,"lemon",fruits,iceblocks) for y in range(144-58,550+58,58*2)] + 
-        [Fruits(70 + 40*13,y,"lemon",fruits,iceblocks) for y in range(144,550,58*2)] + 
-        [Fruits(70 + 40*14,y,"lemon",fruits,iceblocks) for y in range(144-58,550+58,58*2)] + 
-        [Fruits(70 + 40*15,y,"lemon",fruits,iceblocks) for y in range(144,550,58*2)] + 
-        [Fruits(70 + 40*16,y,"lemon",fruits,iceblocks) for y in range(144-58,550+58,58*2)] + 
-        [Fruits(70 + 40*17,y,"lemon",fruits,iceblocks) for y in range(144,550,58*2)],
-
+        [Fruits(50 + x * 40 + 20, 50 + 2 * 58 + 29,"kiwi",fruits,iceblocks) for x in range(7, 11)] +
+        [Fruits(50 + x * 40 + 20, 50 + 6 * 58 + 29,"kiwi",fruits,iceblocks) for x in range(7, 11)] +
+        [Fruits(50 + 6 * 40 + 20, 50 + 3 * 58 + 29,"kiwi",fruits,iceblocks),
+        Fruits(50 + 6 * 40 + 20, 50 + 4 * 58 + 29,"kiwi",fruits,iceblocks),
+        Fruits(50 + 6 * 40 + 20, 50 + 5 * 58 + 29,"kiwi",fruits,iceblocks),
+        Fruits(50 + 11 * 40 + 20, 50 + 3 * 58 + 29,"kiwi",fruits,iceblocks),
+        Fruits(50 + 11 * 40 + 20, 50 + 4 * 58 + 29,"kiwi",fruits,iceblocks),
+        Fruits(50 + 11 * 40 + 20, 50 + 5 * 58 + 29,"kiwi",fruits,iceblocks)] +
+        [Fruits(50 + x * 40 + 20, 50 + 1 * 58 + 29,"kiwi",fruits,iceblocks) for x in range(5, 13)] +
+        [Fruits(50 + x * 40 + 20, 50 + 7 * 58 + 29,"kiwi",fruits,iceblocks) for x in range(5, 13)] +
+        [Fruits(50 + 5 * 40 + 20, 50 + y * 58 + 29,"kiwi",fruits,iceblocks) for y in range(2,6)] +
+        [Fruits(50 + 12 * 40 + 20, 50 + y * 58 + 29,"kiwi",fruits,iceblocks) for y in range(2,6)] +
+        [Fruits(50 + x * 40 + 20, 50 + 29,"kiwi",fruits,iceblocks) for x in range(3, 15)] +
+        [Fruits(50 + x * 40 + 20, 50 + 8 * 58 + 29,"kiwi",fruits,iceblocks) for x in range(3, 15)] +
+        [Fruits(50 + 2 * 40 + 20, 50 + y * 58 + 29,"kiwi",fruits,iceblocks) for y in range(2,8)] +
+        [Fruits(50 + 15 * 40 + 20, 50 + y * 58 + 29,"kiwi",fruits,iceblocks) for y in range(2,8)],
+        
         [Iceblock for Iceblock in iceblocks],
 
         [player for player in players],
@@ -897,20 +899,24 @@ def get_round(level, round):
     l3_r2 = [
         [troll for troll in trolls],
 
-        [Fruits(70,y,"lemon",fruits,iceblocks) for y in range(144,550,58*2)] + 
-        [Fruits(70 + 40*1,y,"lemon",fruits,iceblocks) for y in range(144-58,550+58,58*2)] + 
-        [Fruits(70 + 40*2,y,"lemon",fruits,iceblocks) for y in range(144,550,58*2)] + 
-        [Fruits(70 + 40*3,y,"lemon",fruits,iceblocks) for y in range(144-58,550+58,58*2)] + 
-        [Fruits(70 + 40*4,y,"lemon",fruits,iceblocks) for y in range(144,550,58*2)] + 
-        [Fruits(70 + 40*5,y,"lemon",fruits,iceblocks) for y in range(144-58,550+58,58*2)] + 
-        [Fruits(70 + 40*6,y,"lemon",fruits,iceblocks) for y in range(144,550,58*2)] +
-        [Fruits(70 + 40*11,y,"lemon",fruits,iceblocks) for y in range(144,550,58*2)] + 
-        [Fruits(70 + 40*12,y,"lemon",fruits,iceblocks) for y in range(144-58,550+58,58*2)] + 
-        [Fruits(70 + 40*13,y,"lemon",fruits,iceblocks) for y in range(144,550,58*2)] + 
-        [Fruits(70 + 40*14,y,"lemon",fruits,iceblocks) for y in range(144-58,550+58,58*2)] + 
-        [Fruits(70 + 40*15,y,"lemon",fruits,iceblocks) for y in range(144,550,58*2)] + 
-        [Fruits(70 + 40*16,y,"lemon",fruits,iceblocks) for y in range(144-58,550+58,58*2)] + 
-        [Fruits(70 + 40*17,y,"lemon",fruits,iceblocks) for y in range(144,550,58*2)],
+        [Fruits(50 + x * 40 + 20, 50 + 2 * 58 + 29,"kiwi",fruits,iceblocks) for x in range(7, 11)] +
+        [Fruits(50 + x * 40 + 20, 50 + 6 * 58 + 29,"kiwi",fruits,iceblocks) for x in range(7, 11)] +
+        [Fruits(50 + 6 * 40 + 20, 50 + 3 * 58 + 29,"kiwi",fruits,iceblocks),
+        Fruits(50 + 6 * 40 + 20, 50 + 4 * 58 + 29,"kiwi",fruits,iceblocks),
+        Fruits(50 + 6 * 40 + 20, 50 + 5 * 58 + 29,"kiwi",fruits,iceblocks),
+        Fruits(50 + 11 * 40 + 20, 50 + 3 * 58 + 29,"kiwi",fruits,iceblocks),
+        Fruits(50 + 11 * 40 + 20, 50 + 4 * 58 + 29,"kiwi",fruits,iceblocks),
+        Fruits(50 + 11 * 40 + 20, 50 + 5 * 58 + 29,"kiwi",fruits,iceblocks)] +
+
+        [Fruits(50 + x * 40 + 20, 50 + 1 * 58 + 29,"kiwi",fruits,iceblocks) for x in range(5, 13)] +
+        [Fruits(50 + x * 40 + 20, 50 + 7 * 58 + 29,"kiwi",fruits,iceblocks) for x in range(5, 13)] +
+        [Fruits(50 + 5 * 40 + 20, 50 + y * 58 + 29,"kiwi",fruits,iceblocks) for y in range(2,6)] +
+        [Fruits(50 + 12 * 40 + 20, 50 + y * 58 + 29,"kiwi",fruits,iceblocks) for y in range(2,6)] +
+        
+        [Fruits(50 + x * 40 + 20, 50 + 29,"kiwi",fruits,iceblocks) for x in range(3, 15)] +
+        [Fruits(50 + x * 40 + 20, 50 + 8 * 58 + 29,"kiwi",fruits,iceblocks) for x in range(3, 15)] +
+        [Fruits(50 + 2 * 40 + 20, 50 + y * 58 + 29,"kiwi",fruits,iceblocks) for y in range(2,8)] +
+        [Fruits(50 + 15 * 40 + 20, 50 + y * 58 + 29,"kiwi",fruits,iceblocks) for y in range(2,8)],
 
         [Iceblock for Iceblock in iceblocks],
 
