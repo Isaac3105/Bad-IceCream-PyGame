@@ -3,6 +3,7 @@ import random
 import sys
 
 pygame.init()
+pygame.mixer.init()
 
 # Screen setup
 SCREEN_WIDTH, SCREEN_HEIGHT = 820, 622
@@ -25,8 +26,6 @@ background_rect = background_surface.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_
 iglu_inv_surf = pygame.Surface((160, 173), pygame.SRCALPHA)
 iglu_inv_surf.fill((0, 0, 0, 0)) 
 iglu_inv_rect = iglu_inv_surf.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2))
-
-
 
 # Classes
 class Fruits(pygame.sprite.Sprite):
@@ -234,6 +233,7 @@ class Player(pygame.sprite.Sprite):
         self.counter = 0
         self.speed = 4
         self.speed_end = 2
+        self.morto = False
         self.winning = False
         self.destroying = False
         self.cuspindo = False
@@ -287,6 +287,7 @@ class Player(pygame.sprite.Sprite):
         if self.morrendo_index >= 15:
             self.morrendo_index = 0
             self.morrendo = False
+            self.morto = True
 
     def animation_vencendo(self):
         self.image = self.vencendo_lista[int(self.vencendo_index)]
@@ -560,6 +561,9 @@ class Player(pygame.sprite.Sprite):
             self.animation_cuspindo_gelo()
 
         if self.morrendo:
+            pygame.mixer.music.stop()
+            losing_music.play()
+            pygame.mixer.music.play()
             self.animation_morrendo()
 
         if self.andando:
@@ -569,12 +573,35 @@ class Player(pygame.sprite.Sprite):
             self.animation_comendo()
 
         if self.winning:
+            pygame.mixer.music.stop()
+            winnning_music.play()
+            pygame.mixer.music.play()
             self.andando = False
             self.animation_vencendo()
 
 
         self.last_pos = self.rect.bottomleft
 
+# Music themes
+music = True
+current_music = "placeholder"
+winnning_music = pygame.mixer.Sound("Resources/music/WinMusic.mp3")
+losing_music = pygame.mixer.Sound("Resources/music/LoseMusic.mp3")
+
+# Switching songs through screens
+def play_music_for_screen(active_screen):
+    global current_music
+    music_files = {
+        "start": "Resources/music/MenuMusic.mp3",
+        "levels": "Resources/music/MenuMusic.mp3", 
+        "paused": "Resources/music/MenuMusic.mp3", 
+        "gaming": "Resources/music/GameMusic.mp3",
+    }
+
+    if current_music != music_files[active_screen]:
+        pygame.mixer.music.load(music_files[active_screen])
+        pygame.mixer.music.play(-1)  # Loop indefinitely
+        current_music = music_files[active_screen]
 
 # Sprite groups
 iceblocks = pygame.sprite.Group()
@@ -1088,7 +1115,7 @@ if True:
     lv_access = {    
         0: (lv1_button_rect,True,lv1_button_surf),
         1: (lv2_button_rect,False,lv2_button_surf),
-        2: (lv3_button_rect,True,lv3_button_surf)}
+        2: (lv3_button_rect,False,lv3_button_surf)}
 
     buttons.update({
         back_button_surf:(back_button_rect,True)
@@ -1096,7 +1123,11 @@ if True:
 
 # Game loop
 while True:
+    # Play music:
+    play_music_for_screen(active_screen)
+
     for event in pygame.event.get():
+        # Closing the game window
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
@@ -1122,13 +1153,17 @@ while True:
         if event.type == pygame.MOUSEBUTTONDOWN:
             for j, rect in enumerate(rects):
                 if rect.collidepoint(event.pos) and active_screen == "gaming" and not players.sprites()[0].winning: 
-                    if j == 0:
+                    if j == 0 and not players.sprites()[0].morrendo:
                         restart()
                     elif j == 1:
                         active_screen = "paused"
                     elif j == 2:
-                        # music = False
-                        pass
+                        if music:
+                            pygame.mixer.music.stop()
+                            music = False
+                        else:
+                            pygame.mixer.music.play(-1)
+                            music = True
 
             if active_screen == "paused":
                 if continue_button_rect.collidepoint(event.pos):
@@ -1165,6 +1200,7 @@ while True:
 
     # Gaming State
     if active_screen == "gaming":
+
         # Draw background
         screen.blit(background_surface, background_rect)
         screen.blit(iglu_inv_surf, iglu_inv_rect)
@@ -1262,6 +1298,12 @@ while True:
                         active_screen = "levels"
                 else:
                     player.done = True
+
+        # Check if player lost the level
+        for player in players:
+            if player.morto:
+                restart()
+                active_screen = "levels"
 
         # Score HUD
         if True:
