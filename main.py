@@ -501,9 +501,11 @@ class Player(pygame.sprite.Sprite):
     def update(self):
         keys = pygame.key.get_pressed()
         speed = 5
+        
         # Ice creation
         if keys[pygame.K_f] and (not self.morrendo) and (not self.destroying) and self.rect.bottomleft == self.last_pos:
             self.cuspindo = True
+        
         # Ice destruction
         if keys[pygame.K_SPACE] and self.is_ice_nearby() and (not self.morrendo) and (not self.cuspindo) and self.rect.bottomleft == self.last_pos:
             self.destroying = True
