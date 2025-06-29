@@ -753,6 +753,31 @@ lv3_round2 = [
         [player for player in players],
         ]
 
+lv3_round3 = [
+        [troll for troll in trolls],
+
+        [Fruits(50 + x * 40 + 20, 50 + 2 * 58 + 29,"green apple",fruits,iceblocks) for x in range(7, 11)] +
+        [Fruits(50 + x * 40 + 20, 50 + 6 * 58 + 29,"green apple",fruits,iceblocks) for x in range(7, 11)] +
+        [Fruits(50 + 6 * 40 + 20, 50 + 3 * 58 + 29,"green apple",fruits,iceblocks),
+        Fruits(50 + 6 * 40 + 20, 50 + 4 * 58 + 29,"green apple",fruits,iceblocks),
+        Fruits(50 + 6 * 40 + 20, 50 + 5 * 58 + 29,"green apple",fruits,iceblocks),
+        Fruits(50 + 11 * 40 + 20, 50 + 3 * 58 + 29,"green apple",fruits,iceblocks),
+        Fruits(50 + 11 * 40 + 20, 50 + 4 * 58 + 29,"green apple",fruits,iceblocks),
+        Fruits(50 + 11 * 40 + 20, 50 + 5 * 58 + 29,"green apple",fruits,iceblocks)] +
+        [Fruits(50 + x * 40 + 20, 50 + 1 * 58 + 29,"green apple",fruits,iceblocks) for x in range(5, 13)] +
+        [Fruits(50 + x * 40 + 20, 50 + 7 * 58 + 29,"green apple",fruits,iceblocks) for x in range(5, 13)] +
+        [Fruits(50 + 5 * 40 + 20, 50 + y * 58 + 29,"green apple",fruits,iceblocks) for y in range(2,6)] +
+        [Fruits(50 + 12 * 40 + 20, 50 + y * 58 + 29,"green apple",fruits,iceblocks) for y in range(2,6)] +
+        [Fruits(50 + x * 40 + 20, 50 + 29,"green apple",fruits,iceblocks) for x in range(3, 15)] +
+        [Fruits(50 + x * 40 + 20, 50 + 8 * 58 + 29,"green apple",fruits,iceblocks) for x in range(3, 15)] +
+        [Fruits(50 + 2 * 40 + 20, 50 + y * 58 + 29,"green apple",fruits,iceblocks) for y in range(2,8)] +
+        [Fruits(50 + 15 * 40 + 20, 50 + y * 58 + 29,"green apple",fruits,iceblocks) for y in range(2,8)],
+        
+        [Iceblock for Iceblock in iceblocks],
+
+        [player for player in players],
+        ]
+
 # Simple way to get unaltered lists for any round of any level
 def get_round(level, round):
 
@@ -923,6 +948,31 @@ def get_round(level, round):
         [player for player in players],
         ]
 
+    l3_r3 = [
+        [troll for troll in trolls],
+
+        [Fruits(50 + x * 40 + 20, 50 + 2 * 58 + 29,"green apple",fruits,iceblocks) for x in range(7, 11)] +
+        [Fruits(50 + x * 40 + 20, 50 + 6 * 58 + 29,"green apple",fruits,iceblocks) for x in range(7, 11)] +
+        [Fruits(50 + 6 * 40 + 20, 50 + 3 * 58 + 29,"green apple",fruits,iceblocks),
+        Fruits(50 + 6 * 40 + 20, 50 + 4 * 58 + 29,"green apple",fruits,iceblocks),
+        Fruits(50 + 6 * 40 + 20, 50 + 5 * 58 + 29,"green apple",fruits,iceblocks),
+        Fruits(50 + 11 * 40 + 20, 50 + 3 * 58 + 29,"green apple",fruits,iceblocks),
+        Fruits(50 + 11 * 40 + 20, 50 + 4 * 58 + 29,"green apple",fruits,iceblocks),
+        Fruits(50 + 11 * 40 + 20, 50 + 5 * 58 + 29,"green apple",fruits,iceblocks)] +
+        [Fruits(50 + x * 40 + 20, 50 + 1 * 58 + 29,"green apple",fruits,iceblocks) for x in range(5, 13)] +
+        [Fruits(50 + x * 40 + 20, 50 + 7 * 58 + 29,"green apple",fruits,iceblocks) for x in range(5, 13)] +
+        [Fruits(50 + 5 * 40 + 20, 50 + y * 58 + 29,"green apple",fruits,iceblocks) for y in range(2,6)] +
+        [Fruits(50 + 12 * 40 + 20, 50 + y * 58 + 29,"green apple",fruits,iceblocks) for y in range(2,6)] +
+        [Fruits(50 + x * 40 + 20, 50 + 29,"green apple",fruits,iceblocks) for x in range(3, 15)] +
+        [Fruits(50 + x * 40 + 20, 50 + 8 * 58 + 29,"green apple",fruits,iceblocks) for x in range(3, 15)] +
+        [Fruits(50 + 2 * 40 + 20, 50 + y * 58 + 29,"green apple",fruits,iceblocks) for y in range(2,8)] +
+        [Fruits(50 + 15 * 40 + 20, 50 + y * 58 + 29,"green apple",fruits,iceblocks) for y in range(2,8)],
+        
+        [Iceblock for Iceblock in iceblocks],
+
+        [player for player in players],
+        ]
+    
     if level == 1 == round:
         return l1_r1
     elif level == 1 and round == 2:
@@ -939,13 +989,15 @@ def get_round(level, round):
         return l3_r1
     elif level == 3 and round == 2:
         return l3_r2
+    elif level == 3 and round == 3:
+        return l3_r3
 
 # Dicionários para níveis
 lv1_rounds = {1:lv1_round1, 2:lv1_round2, 3:lv1_round3}
 
 lv2_rounds = {1: lv2_round1, 2: lv2_round2, 3: lv2_round3}
 
-lv3_rounds = {1: lv3_round1, 2: lv3_round2, 3: lv2_round3}
+lv3_rounds = {1: lv3_round1, 2: lv3_round2, 3: lv3_round3}
 
 lvs = [lv1_rounds,lv2_rounds,lv3_rounds]
 
@@ -1205,7 +1257,8 @@ while True:
                     if now - player.winning_timer >= 5000:
                         player.winning = False
                         restart()
-                        lv_access[lv_atual] = (lv_access[lv_atual][0],True,lv_access[lv_atual][2])
+                        if lv_atual != lv_final:
+                            lv_access[lv_atual] = (lv_access[lv_atual][0],True,lv_access[lv_atual][2])
                         active_screen = "levels"
                 else:
                     player.done = True
