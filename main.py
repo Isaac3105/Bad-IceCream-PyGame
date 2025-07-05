@@ -598,6 +598,7 @@ def play_music_for_screen(active_screen):
         "levels": "Resources/music/MenuMusic.mp3", 
         "paused": "Resources/music/MenuMusic.mp3", 
         "help": "Resources/music/MenuMusic.mp3", 
+        "credits": "Resources/music/MenuMusic.mp3",
         "gaming": "Resources/music/GameMusic.mp3",
     }
 
@@ -1123,7 +1124,16 @@ if True:
 #Instancias do Help e derivados
 if True:
     menu_button_surf = pygame.image.load("Resources/help/pressed_back_menu_button.png")
-    menu_button_rect = pygame.Rect(293,485,228,54)
+    menu_button_rect = pygame.Rect(288,483,228,54)
+
+    buttons.update({
+        menu_button_surf:(menu_button_rect,True)
+    })
+
+#Instancias do Credits e derivados
+if True:
+    menu_button_surf = pygame.image.load("Resources/credits/pressed_back_menu_button.png")
+    menu_button_rect = pygame.Rect(288,483,228,54)
 
     buttons.update({
         menu_button_surf:(menu_button_rect,True)
@@ -1186,10 +1196,13 @@ while True:
                 elif help_button_rect.collidepoint(event.pos):
                     active_screen = "help"
                 elif credits_button_rect.collidepoint(event.pos):
-                    #active_screen = "credits"
-                    pass
+                    active_screen = "credits"
 
             elif active_screen == "help":
+                if menu_button_rect.collidepoint(event.pos):
+                    active_screen = "start"
+
+            elif active_screen == "credits":
                 if menu_button_rect.collidepoint(event.pos):
                     active_screen = "start"
 
@@ -1384,7 +1397,10 @@ while True:
 
     # Credits State
     elif active_screen == "credits":
-        pass
+        credits_interface = pygame.image.load("Resources/credits/background.png")
+        credits_rect = credits_interface.get_rect(center = (SCREEN_WIDTH//2,SCREEN_HEIGHT//2))
+        screen.blit(credits_interface,credits_rect)
+        screen.blit(menu_button_surf,menu_button_rect)
 
     # Update the screen
     pygame.display.update()
