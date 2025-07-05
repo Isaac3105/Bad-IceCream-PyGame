@@ -1383,16 +1383,8 @@ while True:
         screen.blit(menu_button_surf,menu_button_rect)
 
     # Credits State
-    """ elif active_screen == "credits":
-        credits_interface = pygame.image.load("Resources/credits/credits.png")
-        credits_rect = credits_interface.get_rect(center = (SCREEN_WIDTH//2,SCREEN_HEIGHT//2))
-        screen.blit(credits_interface,credits_rect)
-        screen.blit(back_button_surf,back_button_rect)
-
-        screen.blit(lv2_button_surf,lv2_button_rect)
-        screen.blit(lv3_button_surf,lv3_button_rect)
-        screen.blit(back_button_surf,back_button_rect) """
-
+    elif active_screen == "credits":
+        pass
 
     # Update the screen
     pygame.display.update()
