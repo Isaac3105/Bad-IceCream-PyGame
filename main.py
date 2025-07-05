@@ -14,7 +14,7 @@ pygame.display.set_caption("Bad Ice Cream by Isaac Santos")
 clock = pygame.time.Clock()
 
 # Game States
-screens = ["start","levels", "paused", "gaming"]
+screens = ["start","levels", "paused", "gaming", "help", "credits"]
 
 active_screen = "start"
 
@@ -597,6 +597,7 @@ def play_music_for_screen(active_screen):
         "start": "Resources/music/MenuMusic.mp3",
         "levels": "Resources/music/MenuMusic.mp3", 
         "paused": "Resources/music/MenuMusic.mp3", 
+        "help": "Resources/music/MenuMusic.mp3", 
         "gaming": "Resources/music/GameMusic.mp3",
     }
 
@@ -1119,6 +1120,15 @@ if True:
         back_button_surf:(back_button_rect,True)
     })
 
+#Instancias do Help e derivados
+if True:
+    menu_button_surf = pygame.image.load("Resources/help/pressed_back_menu_button.png")
+    menu_button_rect = pygame.Rect(293,485,228,54)
+
+    buttons.update({
+        menu_button_surf:(menu_button_rect,True)
+    })
+
 # Game loop
 while True:
     # Play music:
@@ -1176,7 +1186,12 @@ while True:
                 elif help_button_rect.collidepoint(event.pos):
                     active_screen = "help"
                 elif credits_button_rect.collidepoint(event.pos):
-                    active_screen = "credits"
+                    #active_screen = "credits"
+                    pass
+
+            elif active_screen == "help":
+                if menu_button_rect.collidepoint(event.pos):
+                    active_screen = "start"
 
             elif active_screen == "levels":
                 if lv1_button_rect.collidepoint(event.pos):
@@ -1359,6 +1374,25 @@ while True:
         screen.blit(lv2_button_surf,lv2_button_rect)
         screen.blit(lv3_button_surf,lv3_button_rect)
         screen.blit(back_button_surf,back_button_rect)
+
+    # Help State
+    elif active_screen == "help":
+        help_interface = pygame.image.load("Resources/help/background.png")
+        help_rect = help_interface.get_rect(center = (SCREEN_WIDTH//2,SCREEN_HEIGHT//2))
+        screen.blit(help_interface,help_rect)
+        screen.blit(menu_button_surf,menu_button_rect)
+
+    # Credits State
+    """ elif active_screen == "credits":
+        credits_interface = pygame.image.load("Resources/credits/credits.png")
+        credits_rect = credits_interface.get_rect(center = (SCREEN_WIDTH//2,SCREEN_HEIGHT//2))
+        screen.blit(credits_interface,credits_rect)
+        screen.blit(back_button_surf,back_button_rect)
+
+        screen.blit(lv2_button_surf,lv2_button_rect)
+        screen.blit(lv3_button_surf,lv3_button_rect)
+        screen.blit(back_button_surf,back_button_rect) """
+
 
     # Update the screen
     pygame.display.update()
