@@ -1174,10 +1174,10 @@ while True:
                 if play_button_rect.collidepoint(event.pos):
                     active_screen = "levels"
                 elif help_button_rect.collidepoint(event.pos):
-                    pass
+                    active_screen = "help"
                 elif credits_button_rect.collidepoint(event.pos):
-                    pass
-            
+                    active_screen = "credits"
+
             elif active_screen == "levels":
                 if lv1_button_rect.collidepoint(event.pos):
                     active_screen = "gaming"
