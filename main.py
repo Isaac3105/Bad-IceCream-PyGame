@@ -1085,20 +1085,16 @@ if True:
 #Instancias do Start e derivados
 if True:
     play_button_surf = pygame.image.load("Resources/menu/pressed_play_button.png")
-    play_button_rect = pygame.Rect(495, 78, 281, 105)
-
-    scores_button_surf = pygame.image.load("Resources/menu/pressed_scores_button.png")
-    scores_button_rect = pygame.Rect(495, 194, 281, 105)
+    play_button_rect = pygame.Rect(496, 129, 281, 105)
 
     help_button_surf = pygame.image.load("Resources/menu/pressed_help_button.png")
-    help_button_rect = pygame.Rect(495, 311, 281, 105)
+    help_button_rect = pygame.Rect(494, 265, 281, 105)
 
     credits_button_surf = pygame.image.load("Resources/menu/pressed_credits_button.png")
-    credits_button_rect = pygame.Rect(495, 311 + 117, 281, 105)
+    credits_button_rect = pygame.Rect(494, 396, 281, 105)
 
     buttons.update({
         play_button_surf: (play_button_rect,True),
-        scores_button_surf: (scores_button_rect,True),
         help_button_surf: (help_button_rect,True),
         credits_button_surf: (credits_button_rect,True)
     })
@@ -1177,8 +1173,6 @@ while True:
             elif active_screen == "start":
                 if play_button_rect.collidepoint(event.pos):
                     active_screen = "levels"
-                elif scores_button_rect.collidepoint(event.pos):
-                    pass
                 elif help_button_rect.collidepoint(event.pos):
                     pass
                 elif credits_button_rect.collidepoint(event.pos):
@@ -1353,7 +1347,6 @@ while True:
         start_rect = start_interface.get_rect(center = (SCREEN_WIDTH//2,SCREEN_HEIGHT//2))
         screen.blit(start_interface,start_rect)
         screen.blit(play_button_surf,play_button_rect)
-        screen.blit(scores_button_surf,scores_button_rect)
         screen.blit(help_button_surf,help_button_rect)
         screen.blit(credits_button_surf,credits_button_rect)
 
