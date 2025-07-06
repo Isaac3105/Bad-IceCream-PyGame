@@ -36,8 +36,6 @@ Simple, fun, and challenging — just like the original!
 
 Or just open `main.py` in **VSCode** and press "Run" 🚀
 
----
-
 Make sure the `Resources/` folder is in the same directory as `main.py`.
 
 ---
