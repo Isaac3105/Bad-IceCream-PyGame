@@ -29,7 +29,7 @@ Simple, fun, and challenging — just like the original!
 
 1. **Clone the repository**:
     ```bash
-    git clone https://github.com/yourusername/bad-ice-cream-pygame.git  # Clone the repository
+    git clone https://github.com/Isaac3105/Bad-IceCream-PyGame  # Clone the repository
     cd bad-ice-cream-pygame  # Go to the directory
     python3.12 -m venv venv  # Create a virtual environment (optional)
     source venv/bin/activate  # On Windows: venv\Scripts\activate
