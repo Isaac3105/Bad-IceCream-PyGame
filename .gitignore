@@ -1,13 +1,55 @@
-# Python specific
+# Python bytecode and cache
 __pycache__/
 *.py[cod]
-.env
-.venv/
+*.pyo
 
-# IDEs and editors
+# Virtual environments
+venv/
+.venv/
+ENV/
+env/
+
+# Environment variables
+.env
+
+# VS Code and other IDE/editor settings
 .vscode/
 .idea/
+*.sublime-workspace
+*.sublime-project
 
-# System files
+# macOS system files
 .DS_Store
+
+# Windows system files
 Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Compiled executables or build artifacts
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Logs and debug files
+*.log
+
+# PyInstaller / cx_Freeze / Build folders
+dist/
+build/
+__pyinstaller__/
+
+# Unit test and coverage reports
+htmlcov/
+.coverage
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.pytest_cache/
+
+# Git folder dumps or backups
+*.orig
+*.bak
+*.swp
