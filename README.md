@@ -3,7 +3,10 @@
 A **Friv-inspired** arcade game where you play as a fearless scoop of **ice cream**! 🍨  
 Eat all the fruits while avoiding deadly monsters — but be warned, it's **addictive**! 😈
 
----
+## 🎬 Gameplay Preview
+
+![Gameplay](Resources/gameplay.gif)
+
 
 ## 🎮 How to Play
 
