@@ -1,0 +1,24 @@
+{
+  "timestamp": "20251201_144233",
+  "config": {
+    "num_hunters": 2,
+    "num_patrollers": 1,
+    "num_blockers": 1,
+    "simulation_duration": 60.0,
+    "player_strategy": "evasive",
+    "map_obstacles": "medium",
+    "log_level": "info"
+  },
+  "metrics": {
+    "catch_rate": 1.0,
+    "average_path_length": 40.0,
+    "pathfinding_time": 4.875659942626953e-05,
+    "coordination_events": 1208,
+    "player_escape_time": 0.0,
+    "catch_rate_percentage": 49.99999999999963
+  },
+  "simulation_duration": 20.000000000000146,
+  "enemy_count": 4,
+  "player_caught": true,
+  "coordination_events": 1208
+}

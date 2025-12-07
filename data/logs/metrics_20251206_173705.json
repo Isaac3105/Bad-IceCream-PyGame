@@ -1,0 +1,34 @@
+{
+  "metadata": {
+    "export_time": 1765039025.4944701,
+    "tick_count": 5,
+    "version": "1.0",
+    "analyzer": "PerformanceAnalyzer"
+  },
+  "metrics": {
+    "tick_count": 5,
+    "death_count": 0,
+    "fruit_order": [
+      "apple",
+      "banana",
+      "grape"
+    ],
+    "time_between_deaths": [],
+    "average_fruit_time": 13.333333333333334,
+    "current_route_length": 5,
+    "total_routes_recorded": 0,
+    "high_risk_zones": 2,
+    "ice_block_usage": 0,
+    "fruits_collected_this_session": 3,
+    "session_duration": 40.0,
+    "total_fruits_collected": 3,
+    "player_position": [
+      130,
+      130
+    ],
+    "player_has_block": false,
+    "active_trolls": 2,
+    "remaining_fruits": 0,
+    "score": 400
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "export_time": 1764151216.9511898,
+  "tick_count": 4,
+  "death_count": 1,
+  "fruit_order": [
+    "apple",
+    "grape"
+  ],
+  "time_between_deaths": [],
+  "average_fruit_time": 4.0,
+  "current_route_length": 4,
+  "total_routes_recorded": 0,
+  "high_risk_zones": 3,
+  "fruits_collected_this_session": 0,
+  "session_duration": 0.0,
+  "total_fruits_collected": 2
+}

@@ -1,6 +1,9 @@
 import pygame
 import random
 import sys
+from ai.coach.analyzer import PerformanceAnalyzer
+from ai.coach.hint_manager import HintManager
+from ai.utils.game_api import create_game_state_for_analyzer
 
 pygame.init()
 pygame.mixer.init()
@@ -37,6 +40,7 @@ class Fruits(pygame.sprite.Sprite):
         self.limite = 50
         self.counter = 0
         self.fruits = fruits
+        self.fruit_type = fruit# "apple", "banana", "grapes", etc.
         self.icegroup = iceblocks
 
     def animation(self):
