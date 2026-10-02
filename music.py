@@ -15,6 +15,9 @@ def play_music_for_screen(active_screen):
     }
 
     if current_music != music_files[active_screen]:
-        pygame.mixer.music.load(music_files[active_screen])
-        pygame.mixer.music.play(-1)  # Loop indefinitely
+        try:
+            pygame.mixer.music.load(music_files[active_screen])
+            pygame.mixer.music.play(-1)  # Loop indefinitely
+        except (NotImplementedError, Exception):
+            pass
         current_music = music_files[active_screen]

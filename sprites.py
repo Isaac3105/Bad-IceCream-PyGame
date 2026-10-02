@@ -2,10 +2,13 @@ import pygame
 import random
 from settings import SCREEN_WIDTH, SCREEN_HEIGHT, WALL_SIZE, ICE_WIDTH, ICE_HEIGHT
 
-pygame.mixer.init()
-
-winnning_music = pygame.mixer.Sound("Resources/music/WinMusic.mp3")
-losing_music = pygame.mixer.Sound("Resources/music/LoseMusic.mp3")
+try:
+    pygame.mixer.init()
+    winnning_music = pygame.mixer.Sound("Resources/music/WinMusic.mp3")
+    losing_music = pygame.mixer.Sound("Resources/music/LoseMusic.mp3")
+except (NotImplementedError, Exception):
+    winnning_music = None
+    losing_music = None
 
 iglu_inv_surf = pygame.Surface((160, 173), pygame.SRCALPHA)
 iglu_inv_surf.fill((0, 0, 0, 0)) 

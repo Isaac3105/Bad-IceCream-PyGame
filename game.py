@@ -9,7 +9,10 @@ from ui import buttons, lv_access, rects, continue_button_rect, back_menu_button
 class Game:
     def __init__(self):
         pygame.init()
-        pygame.mixer.init()
+        try:
+            pygame.mixer.init()
+        except (NotImplementedError, Exception):
+            pass
         
         self.screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
         pygame.display.set_caption("Bad Ice Cream by Isaac Santos")
@@ -75,10 +78,16 @@ class Game:
                         self.active_screen = "paused"
                     elif j == 2:
                         if self.music_on:
-                            pygame.mixer.music.stop()
+                            try:
+                                pygame.mixer.music.stop()
+                            except (NotImplementedError, Exception):
+                                pass
                             self.music_on = False
                         else:
-                            pygame.mixer.music.play(-1)
+                            try:
+                                pygame.mixer.music.play(-1)
+                            except (NotImplementedError, Exception):
+                                pass
                             self.music_on = True
 
         elif self.active_screen == "paused":
