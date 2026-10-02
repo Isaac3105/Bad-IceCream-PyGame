@@ -55,3 +55,28 @@ menu_button_rect = pygame.Rect(288, 483, 228, 54)
 buttons.update({
     menu_button_surf: (menu_button_rect, True)
 })
+
+
+paused_interface = pygame.image.load("Resources/minimenu/Paused.webp").convert_alpha()
+paused_rect = paused_interface.get_rect(center = (SCREEN_WIDTH//2,SCREEN_HEIGHT//2))
+
+start_interface = pygame.image.load("Resources/menu/start.png").convert_alpha()
+start_rect = start_interface.get_rect(center = (SCREEN_WIDTH//2,SCREEN_HEIGHT//2))
+
+levels_interface = pygame.image.load("Resources/levels_interface/levels.png").convert_alpha()
+levels_rect = levels_interface.get_rect(center = (SCREEN_WIDTH//2,SCREEN_HEIGHT//2))
+
+help_interface = pygame.image.load("Resources/help/background.png").convert_alpha()
+help_rect = help_interface.get_rect(center = (SCREEN_WIDTH//2,SCREEN_HEIGHT//2))
+
+credits_interface = pygame.image.load("Resources/credits/background.png").convert_alpha()
+credits_rect = credits_interface.get_rect(center = (SCREEN_WIDTH//2,SCREEN_HEIGHT//2))
+
+# Scores images
+digit_names = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
+scores = {"p": pygame.transform.scale_by(pygame.image.load("Resources/score/player1.png"), 2)}
+scores["p"].set_colorkey((131, 206, 82, 255))
+for i, name in enumerate(digit_names):
+    img = pygame.transform.scale_by(pygame.image.load(f"Resources/score/{name}.png"), 2.5)
+    img.set_colorkey((131, 206, 82, 255))
+    scores[i] = img
