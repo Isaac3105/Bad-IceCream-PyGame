@@ -561,3 +561,9 @@ class Player(pygame.sprite.Sprite):
             self.animation_vencendo()
 
         self.last_pos = self.rect.bottomleft
+
+iceblocks = pygame.sprite.Group()
+trolls = pygame.sprite.Group()
+fruits = pygame.sprite.Group()
+players = pygame.sprite.Group()
+all_sprites = pygame.sprite.Group(players,trolls)
