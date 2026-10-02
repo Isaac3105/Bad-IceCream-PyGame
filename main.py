@@ -252,23 +252,13 @@ while True:
                 active_screen = "levels"
 
         # Score HUD
-        if True:
-            digit_names = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
-            scores = {"p":pygame.transform.scale_by(pygame.image.load(f"Resources/score/player1.png"),2)}
-            scores["p"].set_colorkey((131, 206, 82, 255))
-            for i, name in enumerate(digit_names):
-                img = pygame.transform.scale_by(pygame.image.load(f"Resources/score/{name}.png"),2.5)
-                img.set_colorkey((131, 206, 82, 255))
-                scores[i] = img
-            for player in players:
-                score_str = str(player.pontos)
-                while len(score_str) < 6:
-                    score_str = "0" + score_str
-                screen.blit(scores["p"], scores["p"].get_rect(topleft=(60, 2)))
-                for index, digit in enumerate(score_str):
-                    x = 110 + index * 25
-                    y = 0 + 20
-                    screen.blit(scores[int(digit)], scores[int(digit)].get_rect(topleft=(x, y)))
+        for player in players:
+            score_str = str(player.pontos).zfill(6)
+            screen.blit(scores["p"], scores["p"].get_rect(topleft=(60, 2)))
+            for index, digit in enumerate(score_str):
+                x = 110 + index * 25
+                y = 0 + 20
+                screen.blit(scores[int(digit)], scores[int(digit)].get_rect(topleft=(x, y)))
 
         # MiniMenu HUD
         if True:
@@ -293,8 +283,6 @@ while True:
 
     # Start State
     elif active_screen == "start":
-        start_interface = pygame.image.load("Resources/menu/start.png")
-        start_rect = start_interface.get_rect(center = (SCREEN_WIDTH//2,SCREEN_HEIGHT//2))
         screen.blit(start_interface,start_rect)
         screen.blit(play_button_surf,play_button_rect)
         screen.blit(help_button_surf,help_button_rect)
@@ -302,9 +290,7 @@ while True:
 
     # Levels State
     elif active_screen == "levels":
-        start_interface = pygame.image.load("Resources/levels_interface/levels.png")
-        start_rect = start_interface.get_rect(center = (SCREEN_WIDTH//2,SCREEN_HEIGHT//2))
-        screen.blit(start_interface,start_rect)
+        screen.blit(levels_interface,levels_rect)
         screen.blit(lv1_button_surf,lv1_button_rect)
         screen.blit(lv2_button_surf,lv2_button_rect)
         screen.blit(lv3_button_surf,lv3_button_rect)
@@ -312,15 +298,11 @@ while True:
 
     # Help State
     elif active_screen == "help":
-        help_interface = pygame.image.load("Resources/help/background.png")
-        help_rect = help_interface.get_rect(center = (SCREEN_WIDTH//2,SCREEN_HEIGHT//2))
         screen.blit(help_interface,help_rect)
         screen.blit(menu_button_surf,menu_button_rect)
 
     # Credits State
     elif active_screen == "credits":
-        credits_interface = pygame.image.load("Resources/credits/background.png")
-        credits_rect = credits_interface.get_rect(center = (SCREEN_WIDTH//2,SCREEN_HEIGHT//2))
         screen.blit(credits_interface,credits_rect)
         screen.blit(menu_button_surf,menu_button_rect)
 
