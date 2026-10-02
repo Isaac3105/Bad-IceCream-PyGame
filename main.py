@@ -1,15 +1,13 @@
 import pygame
-import random
 import sys
 
 pygame.init()
 pygame.mixer.init()
 
-from settings import SCREEN_WIDTH, SCREEN_HEIGHT, WALL_SIZE, ICE_WIDTH, ICE_HEIGHT
-from sprites import Troll, Fruits, IceBlocks, Player, iceblocks, trolls, fruits, players, all_sprites, winnning_music, losing_music, iglu_inv_surf, iglu_inv_rect
+from settings import SCREEN_WIDTH, SCREEN_HEIGHT
+from sprites import iceblocks, trolls, fruits, players, all_sprites, iglu_inv_surf, iglu_inv_rect
 from levels import get_round, lvs, round_final, lv_final
 from music import play_music_for_screen
-import music as music_mod
 
 music = True
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
@@ -29,7 +27,7 @@ round_atual = 1
 lv_atual = 1
 counter = 0
 def restart():
-    global round_atual, players, trolls, iceblocks, all_sprites, fruits
+    global round_atual
 
     round = get_round(lv_atual,1)
 
@@ -60,7 +58,7 @@ def restart():
                 players.add(j)
                 all_sprites.add(j)
 
-from ui import *
+from ui import buttons, lv_access, rects, continue_button_rect, back_menu_button_rect, play_button_rect, help_button_rect, credits_button_rect, menu_button_rect, menu_button_surf, lv1_button_rect, lv2_button_rect, lv3_button_rect, back_button_rect, scores, icons, continue_button_surf, back_menu_button_surf, start_interface, start_rect, play_button_surf, help_button_surf, credits_button_surf, levels_interface, levels_rect, lv1_button_surf, lv2_button_surf, lv3_button_surf, back_button_surf, help_interface, help_rect, credits_interface, credits_rect, paused_interface, paused_rect
 # Game loop
 while True:
     # Play music:
@@ -274,9 +272,6 @@ while True:
 
     # Pause State
     elif active_screen == "paused":
-        paused_interface = pygame.image.load("Resources/minimenu/Paused.webp")
-        paused_rect = paused_interface.get_rect(center = (SCREEN_WIDTH//2,SCREEN_HEIGHT//2))
-        continue_button_rect = pygame.Rect(SCREEN_WIDTH//2 + 2 - 209//2, SCREEN_HEIGHT//2 - 8, 209, 58)
         screen.blit(paused_interface,paused_rect)
         screen.blit(continue_button_surf,continue_button_rect)
         screen.blit(back_menu_button_surf,back_menu_button_rect)

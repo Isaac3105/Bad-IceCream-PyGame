@@ -479,7 +479,6 @@ class Player(pygame.sprite.Sprite):
 
     def update(self):
         keys = pygame.key.get_pressed()
-        speed = 5
         
         # Ice creation
         if keys[pygame.K_f] and (not self.morrendo) and (not self.destroying) and self.rect.bottomleft == self.last_pos:

@@ -1,5 +1,5 @@
 from sprites import Troll, Fruits, IceBlocks, Player, iceblocks, trolls, fruits, players
-from settings import SCREEN_HEIGHT, SCREEN_WIDTH
+from settings import SCREEN_HEIGHT
 lv1_round1 = [
         [Troll(130,224,iceblocks,trolls),
         Troll(730,224,iceblocks,trolls)],
