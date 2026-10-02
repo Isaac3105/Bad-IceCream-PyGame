@@ -8,6 +8,10 @@ pygame.mixer.init()
 from settings import SCREEN_WIDTH, SCREEN_HEIGHT, WALL_SIZE, ICE_WIDTH, ICE_HEIGHT
 from sprites import Troll, Fruits, IceBlocks, Player, iceblocks, trolls, fruits, players, all_sprites, winnning_music, losing_music, iglu_inv_surf, iglu_inv_rect
 from levels import get_round, lvs, round_final, lv_final
+from music import play_music_for_screen
+import music as music_mod
+
+music = True
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption("Bad Ice Cream by Isaac Santos")
 clock = pygame.time.Clock()
